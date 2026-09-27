@@ -65,8 +65,17 @@ and manual requests. It uses a fresh GitHub-hosted `macos-15` arm64 runner,
 Python 3.13.15 and Node 22.23.3. This matches the platform targeted by the
 existing dependency lock; Linux runtime CI needs a separate wheel selection.
 
-The workflow creates a disposable Python environment and installs the 14 exact
-binary wheels from the hashed requirements. It checks their installed versions
+The workflow creates a disposable Python environment with `venv --copies` and
+installs the 14 exact binary wheels from the hashed requirements. An early
+preflight verifies that the selected executable stays inside that environment
+and meets the production import policy's ownership and permission checks.
+Using a symlink could select a shared runner installation with writable parents
+and cause unrelated fixture tests to fail. If provisioning is unsuitable, the
+preflight reports the rejected path chain; it never changes permissions or
+bypasses the policy. This check covers the executable path, not an independent
+audit of the base Python libraries supplied by the runner.
+
+The workflow checks installed dependency versions
 and service imports, then runs `python -B tools/check.py --pty`. Missing or
 mismatched runtime dependencies fail the job instead of silently reducing test
 coverage. No application build, npm install or Botainer installation is needed.
@@ -83,7 +92,7 @@ To reproduce the test gate locally with existing application dependencies and
 Node, run `python -B tools/check.py --pty`. The workflow's **Verify runtime and
 run checks** step also shows the dependency preflight. The local rehearsal used
 Python 3.13.15 and Node 22.18.0; it exercises the same commands, not GitHub runner
-provisioning or the hosted Node patch. The first hosted run must still be checked.
+provisioning or the hosted Node patch. Always inspect the hosted result as well.
 Do not install dependencies into a working dashboard environment just to run CI.
 
 On GitHub, enable Actions under **Settings → Actions → General** and allow the

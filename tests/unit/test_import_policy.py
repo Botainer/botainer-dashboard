@@ -60,6 +60,31 @@ class ImportPolicyTests(unittest.TestCase):
         with self.assertRaisesRegex(ImportPolicyError, "other-account-writable"):
             source_modules(self.root)
 
+    def test_selected_interpreter_link_cannot_hide_shared_installation_permissions(self):
+        shared = self.root / "shared-runtime"
+        shared.mkdir(mode=0o775)
+        shared.chmod(0o775)
+        binary = shared / "python"
+        binary.write_bytes(b"inert interpreter fixture; never executed")
+        binary.chmod(0o755)
+        private = self.root / "private-environment"
+        private.mkdir(mode=0o700)
+        selected = private / "python"
+        selected.symlink_to(binary)
+        with self.assertRaisesRegex(ImportPolicyError, "other-account-writable"):
+            trusted_path(selected.resolve(strict=True))
+        # A copied fixture has its own path and leaves the shared install alone.
+        # Base interpreter libraries remain trusted separately, as documented.
+        selected.unlink()
+        selected.write_bytes(binary.read_bytes())
+        selected.chmod(0o755)
+        trusted_path(selected.resolve(strict=True))
+        self.assertEqual(stat.S_IMODE(shared.stat().st_mode), 0o775)
+        self.assertEqual(selected.read_bytes(), binary.read_bytes())
+        private.chmod(0o775)
+        with self.assertRaisesRegex(ImportPolicyError, "other-account-writable"):
+            trusted_path(selected.resolve(strict=True))
+
     def check_applications_tool(self, *, allow=True, platform="darwin", changes=None,
                                 path="/Applications/Docker.app/Contents/Resources/bin/docker",
                                 admin_missing=False):

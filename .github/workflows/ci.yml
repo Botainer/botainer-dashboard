@@ -40,8 +40,35 @@ jobs:
       - name: Prepare isolated test environment
         run: |
           python -I -B requirements/verify.py
-          python -m venv "$RUNNER_TEMP/dashboard-ci"
+          # Keep the selected executable inside the disposable environment.
+          # A symlink resolves back into the runner's shared Python installation,
+          # whose parent permissions may fail the real import-policy checks.
+          python -m venv --copies "$RUNNER_TEMP/dashboard-ci"
           echo "$RUNNER_TEMP/dashboard-ci/bin" >> "$GITHUB_PATH"
+      - name: Verify test interpreter permissions
+        run: |
+          python -I -B - <<'PY'
+          import os
+          from pathlib import Path
+          import stat
+          import sys
+
+          sys.path.insert(0, str(Path("src").resolve()))
+          from botainer_dashboard.import_policy import ImportPolicyError, trusted_path
+
+          executable = Path(sys.executable).resolve(strict=True)
+          environment = (Path(os.environ["RUNNER_TEMP"]) / "dashboard-ci").resolve(strict=True)
+          if not executable.is_relative_to(environment):
+              raise SystemExit("CI Python resolves outside the disposable venv; recreate it with --copies.")
+          try:
+              trusted_path(executable)
+          except ImportPolicyError as error:
+              for path in (executable, *executable.parents):
+                  info = path.stat()
+                  print(f"{path}: uid={info.st_uid} mode={stat.S_IMODE(info.st_mode):04o}")
+              raise SystemExit(f"CI interpreter permissions rejected: {error}. Fix runner provisioning; do not relax import policy.")
+          print("PASS copied CI interpreter and parent permissions")
+          PY
       - name: Install pinned binary dependencies on the runner
         run: |
           python -m pip --isolated install --disable-pip-version-check --no-input \
