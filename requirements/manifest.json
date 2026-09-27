@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "scope": "Source-tree dependency inputs and bundled browser assets, not an assembled-release inventory. Python wheels are absent from the source tree; offline release bundles separately inventory the dashboard wheel and 14 dependency wheels. Botainer and host tools are external prerequisites.",
+  "python": {
+    "direct_requirements": [
+      "fastapi==0.141.1",
+      "uvicorn==0.53.0",
+      "websockets==17.1",
+      "pydantic==2.13.5"
+    ],
+    "hashed_requirements": "requirements/dashboard-macos-arm64-py313.candidate.txt",
+    "artifact_metadata": "requirements/dashboard-macos-arm64-py313.metadata.json",
+    "qualification": "Development runtime and isolated offline installation exercised on an existing macOS arm64 computer with CPython 3.13.15. New-host onboarding, final native Botainer session acceptance and other host targets remain pending.",
+    "interpreter_bundled": false,
+    "wheels_bundled": false
+  },
+  "frontend": {
+    "versions": "requirements/frontend.package.json",
+    "archive_metadata": "requirements/frontend.metadata.json",
+    "bundled_inventory": "third_party/manifest.json",
+    "notices": "third_party/README.md",
+    "lifecycle_scripts_required": false
+  },
+  "integrity": {
+    "inventory": "requirements/SHA256SUMS",
+    "check": "python3 requirements/verify.py",
+    "limit": "File identity and internal consistency, not publisher authentication or a vulnerability assessment."
+  }
+}

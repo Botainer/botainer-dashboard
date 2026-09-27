@@ -1,0 +1,278 @@
+<div id="bt-multi-study" aria-label="Botainer many-session layout proposal">
+  <style>
+    #bt-multi-study{--bd-bg:light-dark(#fff,#11161c);--bd-panel:light-dark(#f4f6f8,#181f27);--bd-text:light-dark(#192a36,#dce5ed);--bd-muted:light-dark(#526371,#acbac8);--bd-line:light-dark(#cfd7df,#34434f);--bd-active:light-dark(#dcece8,#29403e);--bd-warn:light-dark(#794609,#e5c88a);--bd-error:light-dark(#ac253c,#ffb1bd);background:var(--bd-bg);color:var(--bd-text);font:13px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;border:1px solid var(--bd-line);border-radius:8px;overflow:hidden}
+    #bt-multi-study *{box-sizing:border-box}
+    #bt-multi-study [hidden]{display:none!important}
+    #bt-multi-study button,#bt-multi-study select,#bt-multi-study input{font:inherit;color:inherit;max-width:100%}
+    #bt-multi-study button{background:transparent;border:1px solid transparent;border-radius:4px;padding:5px 8px}
+    #bt-multi-study button:hover{background:var(--bd-active)}
+    #bt-multi-study button:focus-visible,#bt-multi-study input:focus-visible{outline:2px solid var(--bd-text);outline-offset:2px}
+    #bt-multi-study button[aria-pressed=true]{background:var(--bd-active);border-color:var(--bd-line)}
+    #bt-multi-study .bd-chrome{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:8px 12px;border-bottom:1px solid var(--bd-line);background:var(--bd-panel)}
+    #bt-multi-study .bd-brand{font-weight:500;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+    #bt-multi-study .bd-small{font-size:11px;color:var(--bd-muted)}
+    #bt-multi-study .bd-shell{display:grid;grid-template-columns:235px minmax(0,1fr);min-height:560px}
+    #bt-multi-study aside{padding:10px 8px;border-right:1px solid var(--bd-line);background:var(--bd-panel);min-width:0}
+    #bt-multi-study .bd-filters{display:flex;gap:3px;margin-bottom:9px}
+    #bt-multi-study .bd-filters button{flex:1;padding:5px}
+    #bt-multi-study .bd-search{display:block;width:100%;border:1px solid var(--bd-line);border-radius:4px;background:var(--bd-bg);padding:6px 8px;margin-bottom:10px}
+    #bt-multi-study .bd-project{margin-bottom:5px}
+    #bt-multi-study .bd-project-head{display:flex;align-items:center;gap:3px}
+    #bt-multi-study .bd-project-open{flex:1;display:flex;justify-content:space-between;align-items:center;gap:6px;text-align:left;min-width:0}
+    #bt-multi-study .bd-project-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    #bt-multi-study .bd-location{padding:0 6px 4px 29px;font-size:11px;color:var(--bd-muted)}
+    #bt-multi-study .bd-fold{width:23px;flex-shrink:0;padding:4px}
+    #bt-multi-study .bd-count{font-size:11px;color:var(--bd-muted)}
+    #bt-multi-study .bd-session{display:flex;justify-content:space-between;gap:7px;width:calc(100% - 24px);margin:1px 0 1px 24px;text-align:left;padding:5px 6px}
+    #bt-multi-study .bd-session span:last-child{font-size:11px;color:var(--bd-muted);text-align:right}
+    #bt-multi-study .bd-session .bd-alert{color:var(--bd-warn)}
+    #bt-multi-study .bd-coverage{margin-top:16px;padding:9px 5px 0;border-top:1px solid var(--bd-line);font-size:11px;color:var(--bd-muted)}
+    #bt-multi-study .bd-work{min-width:0;display:flex;flex-direction:column}
+    #bt-multi-study .bd-shortcuts{display:flex;gap:4px;flex-wrap:wrap;padding:5px 10px;border-bottom:1px solid var(--bd-line);background:var(--bd-panel)}
+    #bt-multi-study .bd-shortcuts:empty{display:none}
+    #bt-multi-study .bd-context{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-bottom:1px solid var(--bd-line)}
+    #bt-multi-study .bd-context strong{font-weight:500}
+    #bt-multi-study .bd-actions{display:flex;align-items:center;gap:3px;flex-wrap:wrap}
+    #bt-multi-study .bd-stage{display:flex;flex:1;min-width:0}
+    #bt-multi-study .bd-main{flex:1;min-width:0;display:flex;flex-direction:column}
+    #bt-multi-study .bd-terminal{flex:1;min-height:350px;padding:18px 20px}
+    #bt-multi-study pre{font:12px/1.8 ui-monospace,SFMono-Regular,Menlo,monospace;margin:0;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--bd-text)}
+    #bt-multi-study .bd-banner{padding:8px 14px;background:var(--bd-panel);border-bottom:1px solid var(--bd-line);display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px}
+    #bt-multi-study .bd-banner[data-warning=true]{color:var(--bd-warn)}
+    #bt-multi-study .bd-inspector{width:220px;flex:0 0 220px;border-left:1px solid var(--bd-line);padding:14px;background:var(--bd-panel)}
+    #bt-multi-study h3{font-size:13px;font-weight:500;margin:0 0 10px}
+    #bt-multi-study dl{font-size:12px;margin:0}
+    #bt-multi-study dt{color:var(--bd-muted);margin-top:12px}
+    #bt-multi-study dd{margin:2px 0;overflow-wrap:anywhere}
+    #bt-multi-study .bd-log{border-top:1px solid var(--bd-line);background:var(--bd-panel);padding:10px 14px}
+    #bt-multi-study .bd-log-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+    #bt-multi-study .bd-footer{padding:5px 12px;border-top:1px solid var(--bd-line);color:var(--bd-muted);font-size:11px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+    #bt-multi-study .bd-overview{padding:18px}
+    #bt-multi-study .bd-session-choice{display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;width:100%;padding:11px 6px;border-bottom:1px solid var(--bd-line);border-radius:0}
+    #bt-multi-study .bd-session-choice .bd-small{display:block;margin-top:3px}
+    #bt-multi-study .bd-status{font-size:12px;color:var(--bd-muted);text-align:right}
+    #bt-multi-study .bd-host{color:var(--bd-error);font-size:12px}
+    #bt-multi-study .bd-empty{padding:18px;color:var(--bd-muted)}
+    #bt-multi-study[data-density=comfortable] .bd-session{padding-top:9px;padding-bottom:9px}
+    #bt-multi-study[data-density=comfortable] .bd-project{margin-bottom:10px}
+    @media(max-width:740px){#bt-multi-study .bd-shell{grid-template-columns:205px minmax(0,1fr)}#bt-multi-study .bd-stage{flex-direction:column}#bt-multi-study .bd-inspector{width:auto;flex:auto;border-left:0;border-top:1px solid var(--bd-line)}#bt-multi-study .bd-terminal{padding:14px;min-height:290px}}
+    @media(max-width:510px){#bt-multi-study .bd-shell{grid-template-columns:minmax(0,1fr)}#bt-multi-study aside{border-right:0;border-bottom:1px solid var(--bd-line)}#bt-multi-study .bd-coverage{margin-top:8px}#bt-multi-study .bd-terminal{min-height:240px}}
+    @media(pointer:coarse){#bt-multi-study button{min-height:44px}#bt-multi-study input{min-height:44px;font-size:16px}}
+  </style>
+  <div class="bd-chrome">
+    <div class="bd-brand"><strong>botainer</strong><span class="bd-small">Layout study · sample sessions</span></div>
+    <div class="bd-actions"><button id="bt-monitor" class="cursor-interaction">All sessions</button><button id="bt-focus" class="cursor-interaction" aria-pressed="false">Focus terminal</button></div>
+  </div>
+  <div class="bd-shell">
+    <aside id="bt-nav" aria-label="Projects and session attention">
+      <div class="bd-filters"><button id="bt-projects" class="cursor-interaction" aria-pressed="true">Projects</button><button id="bt-attention" class="cursor-interaction" aria-pressed="false">Attention 3</button></div>
+      <label for="bt-search" class="bd-small">Find project, agent or location</label>
+      <input id="bt-search" class="bd-search" type="search" placeholder="Search…" autocomplete="off">
+      <nav id="bt-catalog" aria-label="Sample projects"></nav>
+      <div id="bt-coverage" class="bd-coverage"></div>
+    </aside>
+    <main class="bd-work">
+      <div id="bt-shortcuts" class="bd-shortcuts" aria-label="Pinned terminal shortcuts"></div>
+      <div class="bd-context">
+        <div><strong id="bt-title">Atlas / Claude · a21</strong><div id="bt-subtitle" class="bd-small">This computer · Running · Connected</div></div>
+        <div class="bd-actions"><button id="bt-output" class="cursor-interaction" aria-pressed="false">Setup output</button><button id="bt-details" class="cursor-interaction" aria-pressed="false">Details</button></div>
+      </div>
+      <div class="bd-stage">
+        <div class="bd-main">
+          <div id="bt-notice" class="bd-banner" hidden></div>
+          <section id="bt-content" aria-label="Selected session" class="bd-terminal"></section>
+          <section id="bt-log" class="bd-log" aria-label="Read-only setup output" hidden>
+            <div class="bd-log-heading"><strong>Setup output · read-only</strong><button id="bt-close-log" class="cursor-interaction" aria-label="Close setup output">Close</button></div>
+            <pre id="bt-log-text"></pre>
+          </section>
+        </div>
+        <section id="bt-inspector" class="bd-inspector" aria-label="Session details" hidden></section>
+      </div>
+      <div class="bd-footer"><span id="bt-footer">Sample terminal · no commands are executed</span><span id="bt-footer-right">12 session records · one workspace</span></div>
+    </main>
+  </div>
+  <script>
+    (() => {
+      const root = document.getElementById('bt-multi-study');
+      const el = id => root.querySelector('#' + id);
+      const projects = [
+        {id:'atlas',name:'Atlas',location:'This computer'},
+        {id:'orbit',name:'Orbit',location:'Cluster A'},
+        {id:'mosaic',name:'Mosaic',location:'This computer'},
+        {id:'studio',name:'Studio',location:'Cluster B'},
+        {id:'paper',name:'Paper',location:'This computer'},
+        {id:'delta',name:'Delta',location:'Cluster A'}
+      ];
+      const sessions = [
+        {id:'a21',project:'atlas',agent:'Claude',state:'Running',connected:true,notice:'Permission requested',source:'Agent event · proposed integration',started:'14 min ago'},
+        {id:'a22',project:'atlas',agent:'Codex',state:'Running',connected:true,started:'8 min ago'},
+        {id:'o31',project:'orbit',agent:'Codex',state:'Running',connected:true,notice:'Terminal bell',source:'Terminal BEL · advisory only',started:'42 min ago'},
+        {id:'o32',project:'orbit',agent:'Claude',state:'Queued',started:'3 min ago'},
+        {id:'m11',project:'mosaic',agent:'Claude',state:'Running',connected:false,started:'1 h ago'},
+        {id:'m12',project:'mosaic',agent:'Codex',state:'Running',connected:false,started:'24 min ago'},
+        {id:'s41',project:'studio',agent:'Claude',state:'Unverified',connected:false,started:'Last seen 12 min ago'},
+        {id:'s42',project:'studio',agent:'Codex',state:'Unverified',connected:false,started:'Last seen 12 min ago'},
+        {id:'p51',project:'paper',agent:'Claude',state:'Running',connected:true,host:true,started:'6 min ago'},
+        {id:'p52',project:'paper',agent:'Codex',state:'Stopped',connected:false,started:'Ended 1 h ago'},
+        {id:'d61',project:'delta',agent:'Codex',state:'Launch failed',connected:false,notice:'Launch failed',source:'Recorded CLI outcome',started:'2 min ago'},
+        {id:'d62',project:'delta',agent:'Claude',state:'Queued',started:'5 min ago'}
+      ];
+      const design = {navigation:'sidebar',density:'compact',phase:'running'};
+      const ui = {selected:'a21',overview:null,lens:'projects',log:false,details:false,focus:false,expanded:new Set(['atlas']),seen:new Set(),query:''};
+      function restore(saved) {
+        const p = saved && saved.privateContent;
+        if (!p) return;
+        if (sessions.some(s => s.id === p.selected)) ui.selected = p.selected;
+        if (['sidebar','shortcuts'].includes(p.navigation)) design.navigation = p.navigation;
+        if (['compact','comfortable'].includes(p.density)) design.density = p.density;
+        if (['running','preflight','failed'].includes(p.phase)) design.phase = p.phase;
+        if (['projects','attention'].includes(p.lens)) ui.lens = p.lens;
+        ui.log = p.log === true; ui.details = p.details === true;
+      }
+      function remember() {
+        const state = {modelContent:{layout:'Sidebar primary navigation; setup output belongs to selected work',navigation:design.navigation,density:design.density,phase:design.phase},privateContent:{selected:ui.selected,navigation:design.navigation,density:design.density,phase:design.phase,lens:ui.lens,log:ui.log,details:ui.details}};
+        if (window.openai && window.openai.setWidgetState) window.openai.setWidgetState(state).catch(() => {});
+      }
+      const projectOf = s => projects.find(p => p.id === s.project);
+      const active = s => s.state !== 'Stopped' && s.state !== 'Launch failed';
+      function eventFor(s) {
+        if(s.id==='a21' && design.phase==='preflight')return null;
+        if(s.id==='a21' && design.phase==='failed')return {notice:'Launch failed',source:'Recorded CLI outcome'};
+        return s.notice?{notice:s.notice,source:s.source}:null;
+      }
+      const eventKey = s => s.id+'|'+(eventFor(s)?.notice || '');
+      const alerting = s => Boolean(eventFor(s) && !ui.seen.has(eventKey(s)));
+      const connected = s => Boolean(s.connected && !['Launch failed','Stopped'].includes(status(s)));
+      function element(tag,text,className) {
+        const node = document.createElement(tag);
+        if (text !== undefined) node.textContent = text;
+        if (className) node.className = className;
+        return node;
+      }
+      function button(text,action,className) {
+        const b = element('button',text,'cursor-interaction ' + (className || ''));
+        b.type='button'; b.addEventListener('click',action); return b;
+      }
+      function choose(s) {
+        ui.selected=s.id; ui.overview=null; ui.log=false; ui.expanded.add(s.project);
+        render(); remember();
+      }
+      function status(s) {
+        if (s.id === 'a21' && design.phase === 'preflight') return 'Preflight';
+        if (s.id === 'a21' && design.phase === 'failed') return 'Launch failed';
+        return s.state;
+      }
+      function renderCatalog() {
+        const catalog=el('bt-catalog'); catalog.replaceChildren();
+        const query=ui.query.toLowerCase();
+        projects.forEach(p => {
+          const records=sessions.filter(s => s.project===p.id);
+          const matches=records.filter(s => (!query || [p.name,p.location,s.agent,s.id].join(' ').toLowerCase().includes(query)) && (ui.lens!=='attention' || alerting(s)));
+          if (!matches.length) return;
+          const group=element('div',undefined,'bd-project');
+          const heading=element('div',undefined,'bd-project-head');
+          const expanded=ui.expanded.has(p.id) || ui.lens==='attention' || Boolean(query);
+          const fold=button(expanded?'⌄':'›',() => { if(ui.expanded.has(p.id))ui.expanded.delete(p.id);else ui.expanded.add(p.id);render(); },'bd-fold');
+          fold.hidden=ui.lens==='attention' || Boolean(query);
+          fold.setAttribute('aria-label',(expanded?'Collapse ':'Expand ')+p.name);fold.setAttribute('aria-expanded',String(expanded));
+          const project=button('',() => {ui.overview=p.id;ui.focus=false;render();remember();},'bd-project-open');
+          project.append(element('span',p.name,'bd-project-name'),element('span',(records.some(alerting)?'! · ':'')+records.filter(active).length+' current','bd-count'));
+          heading.append(fold,project);group.append(heading,element('div',p.location,'bd-location'));
+          if(expanded) matches.forEach(s => {
+            const row=button('',() => choose(s),'bd-session');
+            row.setAttribute('aria-pressed',String(!ui.overview && ui.selected===s.id));
+            row.append(element('span',s.agent+' · '+s.id),element('span',alerting(s)?eventFor(s).notice:status(s),alerting(s)?'bd-alert':''));
+            group.append(row);
+          });
+          catalog.append(group);
+        });
+        if(!catalog.childNodes.length)catalog.append(element('p','No matching sessions','bd-empty'));
+        el('bt-projects').setAttribute('aria-pressed',String(ui.lens==='projects'));
+        el('bt-attention').setAttribute('aria-pressed',String(ui.lens==='attention'));
+        el('bt-attention').textContent='Attention '+sessions.filter(alerting).length;
+        el('bt-coverage').textContent='Sample coverage: '+sessions.filter(connected).length+' connected terminals. Other sessions may need attention without reporting it.';
+      }
+      function renderOverview() {
+        const p=projects.find(p => p.id===ui.overview);
+        const list=p?sessions.filter(s => s.project===p.id):sessions;
+        el('bt-title').textContent=p?p.name:'All sessions';
+        el('bt-subtitle').textContent=p?p.location:'Across all locations · sample records';
+        el('bt-output').hidden=true;el('bt-log').hidden=true;el('bt-inspector').hidden=true;el('bt-notice').hidden=true;
+        const content=el('bt-content');content.className='bd-overview';content.replaceChildren();
+        content.append(element('h3',p?'Current work and recent outcomes':'Current work across locations'));
+        list.forEach(s => {
+          const row=button('',() => choose(s),'bd-session-choice');
+          const label=element('span',projectOf(s).name+' / '+s.agent+' · '+s.id);
+          label.append(element('span',projectOf(s).location+' · '+s.started+(s.host?' · Host, no container':''),'bd-small'));
+          row.append(label,element('span',alerting(s)?eventFor(s).notice:status(s),'bd-status'));
+          content.append(row);
+        });
+        el('bt-footer').textContent='Select existing work · does not start another agent';
+      }
+      function renderSession() {
+        const s=sessions.find(s => s.id===ui.selected),p=projectOf(s),phase=status(s);
+        el('bt-title').textContent=p.name+' / '+s.agent+' · '+s.id;
+        el('bt-subtitle').textContent=p.location+' · '+phase+' · '+(connected(s)?'Connected':'Viewer not connected');
+        el('bt-output').hidden=phase==='Preflight';el('bt-output').setAttribute('aria-pressed',String(ui.log));
+        const content=el('bt-content');content.className='bd-terminal';content.replaceChildren();
+        const notice=el('bt-notice');notice.replaceChildren();notice.hidden=true;
+        if(s.host){const warning=element('div','Host agent · no container','bd-host');content.append(warning);}
+        let lines;
+        if(phase==='Preflight')lines=['Botainer preflight · original interactive console','','Project: Atlas','Agent: Claude','Runtime: container','','[Native mount, network and credential summary appears here]','','Continue? [y/n] _'];
+        else if(phase==='Launch failed')lines=['Botainer launch did not complete.','','Image is unavailable for the selected runtime.','No replacement launch has been requested.','','Review setup output before retrying.'];
+        else if(phase==='Queued')lines=['Waiting for cluster allocation','','Requested agent: '+s.agent,'Scheduler state: queued','Reason: resources','','The agent terminal is not available yet.'];
+        else if(phase==='Unverified')lines=['Connection unavailable','','Last successful observation: 12 minutes ago.','The session may still be running.','','Restore the SSH connection to verify its state.'];
+        else if(phase==='Stopped')lines=['Session ended · retained output only','','No complete agent transcript was recorded.'];
+        else if(!s.connected)lines=[s.agent+' session is reported running.','','The terminal viewer is not connected.','Open would reconnect to this exact owner, where supported.','','Attention coverage: unknown while disconnected.'];
+        else if(s.id==='a21')lines=['Claude · Atlas','','The change is ready for verification.','','Permission requested: run the project test command.','','❯ 1. Allow once','  2. Decline','','_'];
+        else lines=[s.agent+' · '+p.name,'','Working in the existing session…','','Session identity: '+s.id,'','_'];
+        content.append(element('pre',lines.join('\n')));
+        if(alerting(s) && phase!=='Preflight') {
+          notice.hidden=false;notice.dataset.warning='true';
+          const event=eventFor(s);
+          const label=element('span',event.notice);label.append(element('span',' · '+event.source,'bd-small'));
+          notice.append(label,button('Mark seen',() => {ui.seen.add(eventKey(s));render();remember();}));
+        }
+        el('bt-log').hidden=!ui.log || phase==='Preflight';
+        const result=phase==='Launch failed'?'Launch failed: image unavailable':phase==='Queued'?'Native confirmation accepted\nJob submitted; waiting for allocation':phase==='Unverified'?'Current outcome cannot be verified while offline':'Native confirmation accepted\nRuntime recorded: '+s.id+'\nTerminal handoff recorded; preflight output retained';
+        el('bt-log-text').textContent='Original launch record · separate from agent output\nConfiguration checked\nNative preflight shown\n'+result;
+        const details=el('bt-inspector');details.hidden=!ui.details;details.replaceChildren();
+        details.append(element('h3','Details'));
+        const dl=element('dl');
+        [['Agent',s.agent],['Location',p.location],['Workload',phase],['Viewer',connected(s)?'Connected':'Not connected'],['Attention source',eventFor(s)?.source||'No signal recorded'],['Coverage',connected(s)?'Terminal signals while connected':'Unknown · not monitored'],['Setup output','Retained with this work item']].forEach(pair => dl.append(element('dt',pair[0]),element('dd',pair[1])));
+        details.append(dl);
+        el('bt-footer').textContent='Sample terminal · no commands are executed';
+      }
+      function render() {
+        root.dataset.density=design.density;
+        root.querySelector('.bd-shell').style.gridTemplateColumns=ui.focus?'minmax(0,1fr)':'';
+        el('bt-nav').hidden=ui.focus;el('bt-focus').setAttribute('aria-pressed',String(ui.focus));
+        el('bt-details').setAttribute('aria-pressed',String(ui.details));el('bt-details').hidden=Boolean(ui.overview);
+        const shortcuts=el('bt-shortcuts');shortcuts.replaceChildren();
+        if(design.navigation==='shortcuts'&&!ui.focus) {
+          shortcuts.append(element('span','Pinned','bd-small'));
+          ['a21','a22','o31'].forEach(id => {const s=sessions.find(x=>x.id===id);shortcuts.append(button(projectOf(s).name+' / '+s.agent,()=>choose(s)));});
+        }
+        renderCatalog();
+        if(ui.overview)renderOverview();else renderSession();
+      }
+      el('bt-projects').addEventListener('click',()=>{ui.lens='projects';render();remember();});
+      el('bt-attention').addEventListener('click',()=>{ui.lens='attention';render();remember();});
+      el('bt-search').addEventListener('input',()=>{ui.query=el('bt-search').value;renderCatalog();});
+      el('bt-monitor').addEventListener('click',()=>{ui.overview='all';ui.focus=false;render();});
+      el('bt-focus').addEventListener('click',()=>{ui.focus=!ui.focus;render();});
+      el('bt-details').addEventListener('click',()=>{ui.details=!ui.details;render();remember();});
+      el('bt-output').addEventListener('click',()=>{ui.log=!ui.log;render();remember();});
+      el('bt-close-log').addEventListener('click',()=>{ui.log=false;render();remember();});
+      restore(window.openai && window.openai.widgetState);render();
+      window.addEventListener('openai:set_globals',event=>{if(event.detail && event.detail.globals && event.detail.globals.widgetState){restore(event.detail.globals.widgetState);render();}});
+      if(globalThis.Tweak) {
+        let lastPhase=design.phase;
+        const tweak=new Tweak({container:root,onChange:()=>{if(lastPhase!==design.phase){ui.selected='a21';ui.overview=null;ui.log=false;lastPhase=design.phase;}render();remember();}});
+        tweak.addSelect(design,'navigation',{label:'Navigation',options:[{label:'Sidebar only',value:'sidebar'},{label:'Sidebar + pinned shortcuts',value:'shortcuts'}]});
+        tweak.addSelect(design,'density',{label:'Project list density',options:['compact','comfortable']});
+        tweak.addSelect(design,'phase',{label:'Atlas launch phase',options:['running','preflight','failed']});
+      }
+    })();
+  </script>
+</div>

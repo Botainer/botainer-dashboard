@@ -1,0 +1,52 @@
+idna 3.20: generated Unicode lookup tables
+
+This attribution supplement accompanies the separately distributed, unmodified
+idna dependency wheel. It does not replace idna's BSD-3-Clause license or change
+the license of the dashboard application.
+
+Artifact:
+  idna-3.20-py3-none-any.whl
+  SHA-256: ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c
+
+Generated table members:
+  idna/idnadata.py
+  SHA-256: 23a9a8c1d15de9c634d0bf213d779810f485083fe1b0f7e09044ad04a69cc7eb
+
+  idna/uts46data.py
+  SHA-256: 770e849bfa156c71828a89440a57fe9aea70735f103ae4616ee4f682e13d6c00
+
+Both members identify tools/idna-data as their generator and Unicode 18.0.0 as
+their table version. The idna 3.20 release also identifies the Unicode 18.0.0
+update. The upstream generator documentation describes calculating these tables
+from Unicode source data. This notice does not attest to regeneration of the
+wheel from a particular complete set of source inputs.
+
+idna copyright and license:
+  Copyright (c) 2013-2026, Kim Davies and contributors.
+  BSD-3-Clause; retain the full original license in the wheel at
+  idna-3.20.dist-info/licenses/LICENSE.md.
+
+Unicode source data attribution:
+  Copyright © 2026 Unicode, Inc.
+  The Unicode 18.0.0 data references below identify Unicode's terms of use.
+  The accompanying Unicode-LICENSE.txt preserves the complete Unicode License
+  v3, including its copyright and permission notice. Keep it with this document
+  as associated documentation when redistributing the selected idna wheel.
+
+The additional Unicode notice is supplied conservatively for the generated
+tables and their underlying data. Upstream distinguishes its packaged
+calculated tables from the Unicode data files retrieved by the generator. This
+supplement does not assert that idna's own license declaration is incorrect.
+
+Primary references:
+  https://pypi.org/pypi/idna/3.20/json
+  https://github.com/kjd/idna/releases/tag/v3.20
+  https://github.com/kjd/idna/blob/master/tools/README.md
+  https://www.unicode.org/Public/18.0.0/ReadMe.txt
+  https://www.unicode.org/Public/18.0.0/idna/IdnaMappingTable.txt
+  https://www.unicode.org/Public/18.0.0/ucd/
+  https://www.unicode.org/copyright.html
+  https://www.unicode.org/license.txt
+
+The table hashes identify the reviewed wheel members. A dependency update
+requires a fresh check of its table version, included portions and notices.

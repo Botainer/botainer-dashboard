@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "default_machine": "local",
+  "machines": {
+    "local": {
+      "transport": "local",
+      "default_installation": "default",
+      "installations": {
+        "default": {
+          "launcher": { "mode": "executable" },
+          "state_root": "~/.botainer"
+        }
+      }
+    }
+  }
+}

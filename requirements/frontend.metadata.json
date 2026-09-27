@@ -1,0 +1,170 @@
+{
+  "status": "Exact upstream tarball identities; selected bundled text assets verified against cached archive bytes.",
+  "packages": [
+    {
+      "metadata_url": "https://registry.npmjs.org/@xterm%2Fxterm/6.0.0",
+      "name": "@xterm/xterm",
+      "version": "6.0.0",
+      "license": "MIT",
+      "repository": {
+        "url": "git+https://github.com/xtermjs/xterm.js.git",
+        "type": "git"
+      },
+      "maintainers": [
+        {
+          "name": "tyriar",
+          "email": "tyriar@tyriar.com"
+        }
+      ],
+      "dependencies": null,
+      "optionalDependencies": null,
+      "peerDependencies": null,
+      "engines": null,
+      "scripts": {
+        "tsc": "tsc -b ./tsconfig.all.json",
+        "lint": "eslint -c .eslintrc.json --max-warnings 0 --ext .ts src/ addons/",
+        "test": "npm run test-unit",
+        "build": "npm run tsc",
+        "clean": "rm -rf lib out addons/*/lib addons/*/out",
+        "setup": "npm run build",
+        "start": "node demo/start",
+        "watch": "npm run tsc-watch",
+        "esbuild": "node bin/esbuild_all.mjs",
+        "package": "webpack",
+        "lint-api": "eslint --no-eslintrc -c .eslintrc.json.typings --max-warnings 0 --no-ignore --ext .d.ts typings/",
+        "lint-fix": "eslint -c .eslintrc.json --fix --ext .ts src/ addons/",
+        "posttest": "npm run lint",
+        "benchmark": "NODE_PATH=./out xterm-benchmark -r 5 -c test/benchmark/benchmark.json",
+        "test-unit": "node ./bin/test_unit.js",
+        "tsc-watch": "tsc -b -w ./tsconfig.all.json --preserveWatchOutput",
+        "prepackage": "npm run build",
+        "vtfeatures": "node bin/extract_vtfeatures.js src/**/*.ts src/*.ts",
+        "postpackage": "npm run esbuild-package",
+        "esbuild-demo": "node bin/esbuild.mjs --demo-client",
+        "esbuild-watch": "node bin/esbuild_all.mjs --watch",
+        "test-unit-dev": "cross-env NODE_PATH='./out' mocha",
+        "benchmark-eval": "NODE_PATH=./out xterm-benchmark -r 5 -c test/benchmark/benchmark.json --eval out-test/benchmark/*benchmark.js",
+        "prepublishOnly": "npm run package",
+        "esbuild-package": "node bin/esbuild_all.mjs --prod",
+        "package-headless": "webpack --config ./webpack.config.headless.js",
+        "test-integration": "node ./bin/test_integration.js --workers=75%",
+        "benchmark-baseline": "NODE_PATH=./out xterm-benchmark -r 5 -c test/benchmark/benchmark.json --baseline out-test/benchmark/*benchmark.js",
+        "esbuild-demo-watch": "node bin/esbuild.mjs --demo-client --watch",
+        "test-unit-coverage": "node ./bin/test_unit.js --coverage",
+        "prepackage-headless": "npm run esbuild-package-headless-only",
+        "postpackage-headless": "node ./bin/package_headless.js",
+        "esbuild-package-watch": "node bin/esbuild_all.mjs --prod --watch",
+        "test-integration-debug": "node ./bin/test_integration.js  --workers=1 --headed --timeout=30000",
+        "test-integration-webkit": "node ./bin/test_integration.js --workers=75% \"--project=WebKit\"",
+        "test-integration-firefox": "node ./bin/test_integration.js --workers=75% \"--project=FirefoxStable\"",
+        "test-integration-chromium": "node ./bin/test_integration.js --workers=75% \"--project=ChromeStable\"",
+        "esbuild-package-headless-only": "node bin/esbuild.mjs --prod --headless"
+      },
+      "main": "lib/xterm.js",
+      "module": "lib/xterm.mjs",
+      "style": "css/xterm.css",
+      "exports": null,
+      "dist": {
+        "shasum": "93637b0f2ee3a70718b5746a27c9c506af16745b",
+        "tarball": "https://registry.npmjs.org/@xterm/xterm/-/xterm-6.0.0.tgz",
+        "fileCount": 161,
+        "integrity": "sha512-TQwDdQGtwwDt+2cgKDLn0IRaSxYu1tSUjgKarSDkUM0ZNiSRXFpjxEsvc/Zgc5kq5omJ+V0a8/kIM2WD3sMOYg==",
+        "signatures": [
+          {
+            "sig": "MEQCIE1Age1GsE5nVZ79G0fSE/NrJFT6fpZJ20Ex0Qfk6pDtAiBSh1Lchtv/+Ls+A0QRH7I1xjJDRtkWNoFMWUVf6HVC5g==",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          }
+        ],
+        "unpackedSize": 5921599
+      }
+    },
+    {
+      "metadata_url": "https://registry.npmjs.org/@xterm%2Faddon-fit/0.11.0",
+      "name": "@xterm/addon-fit",
+      "version": "0.11.0",
+      "license": "MIT",
+      "repository": {
+        "url": "git+https://github.com/xtermjs/xterm.js.git#master",
+        "type": "git"
+      },
+      "maintainers": [
+        {
+          "name": "tyriar",
+          "email": "tyriar@tyriar.com"
+        }
+      ],
+      "dependencies": null,
+      "optionalDependencies": null,
+      "peerDependencies": null,
+      "engines": null,
+      "scripts": {
+        "build": "../../node_modules/.bin/tsc -p .",
+        "start": "node ../../demo/start",
+        "package": "../../node_modules/.bin/webpack",
+        "prepackage": "npm run build",
+        "prepublishOnly": "npm run package"
+      },
+      "main": "lib/addon-fit.js",
+      "module": "lib/addon-fit.mjs",
+      "style": null,
+      "exports": null,
+      "dist": {
+        "shasum": "ba4778b69fcc9044a060c2176bbe077657d7b37e",
+        "tarball": "https://registry.npmjs.org/@xterm/addon-fit/-/addon-fit-0.11.0.tgz",
+        "fileCount": 9,
+        "integrity": "sha512-jYcgT6xtVYhnhgxh3QgYDnnNMYTcf8ElbxxFzX0IZo+vabQqSPAjC3c1wJrKB5E19VwQei89QCiZZP86DCPF7g==",
+        "signatures": [
+          {
+            "sig": "MEQCIFPrcqhz7YoHkvs6FVsLjrJWenwUTe4kJJLdnTpgvo9WAiAesuSVZeaGpbiUgw9K6Y3wQx2VFSzb2Z5beqFHvlmNhQ==",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          }
+        ],
+        "unpackedSize": 20727
+      }
+    },
+    {
+      "metadata_url": "https://registry.npmjs.org/@xterm%2Faddon-search/0.16.0",
+      "name": "@xterm/addon-search",
+      "version": "0.16.0",
+      "license": "MIT",
+      "repository": {
+        "url": "git+https://github.com/xtermjs/xterm.js.git#master",
+        "type": "git"
+      },
+      "maintainers": [
+        {
+          "name": "tyriar",
+          "email": "tyriar@tyriar.com"
+        }
+      ],
+      "dependencies": null,
+      "optionalDependencies": null,
+      "peerDependencies": null,
+      "engines": null,
+      "scripts": {
+        "start": "node ../../demo/start",
+        "package": "../../node_modules/.bin/webpack",
+        "prepackage": "../../node_modules/.bin/tsc -p .",
+        "prepublishOnly": "npm run package"
+      },
+      "main": "lib/addon-search.js",
+      "module": "lib/addon-search.mjs",
+      "style": null,
+      "exports": null,
+      "dist": {
+        "shasum": "ddadcbc6e556e45fc4b153f8a0efdf2aa1456b82",
+        "tarball": "https://registry.npmjs.org/@xterm/addon-search/-/addon-search-0.16.0.tgz",
+        "fileCount": 14,
+        "integrity": "sha512-9OeuBFu0/uZJPu+9AHKY6g/w0Czyb/Ut0A5t79I4ULoU4IfU5BEpPFVGQxP4zTTMdfZEYkVIRYbHBX1xWwjeSA==",
+        "signatures": [
+          {
+            "sig": "MEQCIDbVMcGL19lc42VHaaNLEQLO78bFD3LVWyhGwC+BpZBgAiBjWGV3E6ukaoUn8AcsukNMD+IsYxHgS3ctis36qR5V6Q==",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          }
+        ],
+        "unpackedSize": 838673
+      }
+    }
+  ],
+  "metadata_recorded_at": "2026-09-20"
+}

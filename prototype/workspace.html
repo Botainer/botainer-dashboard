@@ -1,0 +1,218 @@
+<div id="botainer-study" aria-label="Botainer interactive prototype">
+  <style>
+    #botainer-study { --bt-bg:light-dark(#fff,#1a1d1c); --bt-side:light-dark(#f3f5f2,#202522); --bt-fg:light-dark(#233129,#e5ece7); --bt-muted:light-dark(#637168,#a6b5aa); --bt-line:light-dark(#dce4de,#354139); --bt-sel:light-dark(#e0ece3,#304b37); --bt-accent:light-dark(#305f3e,#b1d9b8); --bt-button:light-dark(#315d3e,#b8d8bd); --bt-button-fg:light-dark(#fff,#1a2a1e); --bt-term:light-dark(#f8faf8,#131a16); --bt-warn:light-dark(#805e21,#e8c67e); --bt-danger:light-dark(#983e36,#edaca4); --bt-sidebar-width:280px; color:var(--bt-fg); background:var(--bt-bg); font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; width:100%; min-width:0; }
+    #botainer-study * { box-sizing:border-box; }
+    #botainer-study [hidden] { display:none!important; }
+    #botainer-study button, #botainer-study input, #botainer-study select, #botainer-study textarea { font:inherit; }
+    #botainer-study button { border:1px solid var(--bt-line); border-radius:6px; background:var(--bt-bg); color:var(--bt-fg); padding:6px 10px; max-width:100%; }
+    #botainer-study button:disabled { opacity:.45; }
+    #botainer-study button.bt-primary { background:var(--bt-button); border-color:var(--bt-button); color:var(--bt-button-fg); }
+    #botainer-study button.bt-danger { color:var(--bt-danger); }
+    #botainer-study button.bt-quiet { background:transparent; border-color:transparent; }
+    #botainer-study button:focus-visible, #botainer-study input:focus-visible, #botainer-study select:focus-visible, #botainer-study textarea:focus-visible, #botainer-study summary:focus-visible { outline:2px solid var(--bt-accent); outline-offset:2px; }
+    #botainer-study label { display:block; font-size:12px; min-width:0; }
+    #botainer-study input, #botainer-study select, #botainer-study textarea { display:block; width:100%; min-width:0; margin-top:5px; padding:7px 9px; background:var(--bt-bg); color:var(--bt-fg); border:1px solid var(--bt-line); border-radius:6px; }
+    #botainer-study input[type="range"] { padding:0; border:0; accent-color:var(--bt-accent); }
+    #botainer-study .bt-demo { display:flex; align-items:center; justify-content:space-between; gap:6px 12px; flex-wrap:wrap; flex-shrink:0; padding:4px 12px; font-size:11px; color:var(--bt-muted); background:var(--bt-side); border-bottom:1px solid var(--bt-line); }
+    #botainer-study .bt-demo button { font-size:11px; padding:2px 6px; }
+    #botainer-study .bt-window { display:flex; flex-direction:column; border:1px solid var(--bt-line); border-radius:8px; background:var(--bt-bg); min-width:0; min-height:540px; }
+    #botainer-study .bt-top { display:flex; align-items:center; justify-content:space-between; gap:6px 14px; flex-wrap:wrap; flex-shrink:0; padding:8px 12px; border-bottom:1px solid var(--bt-line); }
+    #botainer-study .bt-brand { min-width:0; font-size:17px; font-weight:500; letter-spacing:-.4px; display:flex; align-items:center; gap:12px; }
+    #botainer-study .bt-brand span { color:var(--bt-muted); font-size:11px; font-weight:400; letter-spacing:0; }
+    #botainer-study .bt-top-actions { display:flex; align-items:center; justify-content:flex-end; gap:6px; flex-wrap:wrap; min-width:0; }
+    #botainer-study .bt-view-options { position:relative; margin:0; }
+    #botainer-study .bt-view-options > summary { padding:6px 8px; border:1px solid var(--bt-line); border-radius:6px; color:var(--bt-fg); font-size:12px; list-style-position:inside; }
+    #botainer-study .bt-view-menu { position:absolute; top:calc(100% + 8px); right:0; width:240px; max-width:calc(100vw - 24px); z-index:40; padding:14px; border:1px solid var(--bt-line); border-radius:8px; background:var(--bt-bg); box-shadow:0 8px 24px #0002; }
+    #botainer-study .bt-view-menu button { width:100%; margin-bottom:12px; }
+    #botainer-study .bt-layout { position:relative; display:grid; grid-template-columns:var(--bt-sidebar-width) minmax(0,1fr); grid-template-areas:"sidebar main"; flex:1; min-width:0; min-height:0; }
+    #botainer-study .bt-sidebar { grid-area:sidebar; display:flex; flex-direction:column; gap:12px; min-width:0; min-height:0; padding:12px 10px; background:var(--bt-side); border-right:1px solid var(--bt-line); }
+    #botainer-study .bt-sidebar-heading { display:flex; align-items:center; justify-content:space-between; gap:6px; font-size:12px; font-weight:500; }
+    #botainer-study .bt-sidebar-filters { flex-shrink:0; display:grid; gap:10px; }
+    #botainer-study .bt-filter-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+    #botainer-study .bt-sidebar-filters label { color:var(--bt-muted); font-size:11px; }
+    #botainer-study .bt-sidebar-filters input, #botainer-study .bt-sidebar-filters select { font-size:12px; padding:6px 7px; }
+    #botainer-study .bt-sort-control { display:flex; align-items:center; gap:8px; }
+    #botainer-study .bt-sort-control select { flex:1; margin:0; }
+    #botainer-study .bt-projects { min-width:0; min-height:0; flex:1; overflow:auto; overscroll-behavior:contain; scrollbar-gutter:stable; }
+    #botainer-study .bt-group { margin-bottom:16px; min-width:0; }
+    #botainer-study .bt-list-heading { padding:0 8px; margin:4px 0 9px; color:var(--bt-muted); font-size:11px; }
+    #botainer-study .bt-group-name, #botainer-study .bt-project-heading { display:flex; align-items:center; justify-content:space-between; gap:4px; padding:0 4px 4px; font-size:12px; font-weight:500; overflow-wrap:anywhere; }
+    #botainer-study .bt-group-name button, #botainer-study .bt-project-heading button { padding:2px 4px; text-align:left; min-width:0; }
+    #botainer-study .bt-project-heading .bt-project-name { flex:1; }
+    #botainer-study .bt-pin { flex:0 0 auto; font-size:12px; color:var(--bt-muted); }
+    #botainer-study .bt-pin[aria-pressed="true"] { color:var(--bt-accent); }
+    #botainer-study .bt-session { width:100%; display:block; text-align:left; border:1px solid transparent; background:transparent; padding:8px 9px; margin-bottom:2px; }
+    #botainer-study .bt-session[aria-pressed="true"] { background:var(--bt-sel); }
+    #botainer-study .bt-session span { display:block; overflow-wrap:anywhere; }
+    #botainer-study .bt-session-meta { color:var(--bt-muted); font-size:11px; margin-top:3px; }
+    #botainer-study .bt-session .bt-session-meta { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+    #botainer-study .bt-project-context { padding:0 8px 3px; }
+    #botainer-study .bt-agent-tag { display:inline-flex!important; align-items:center; border:1px solid var(--bt-line); border-radius:4px; padding:0 5px; font-size:11px; line-height:1.7; color:var(--bt-muted); white-space:nowrap; vertical-align:middle; }
+    #botainer-study .bt-agent-tag[data-agent="claude"] { color:light-dark(#855039,#e7b39a); }
+    #botainer-study .bt-agent-tag[data-agent="codex"] { color:light-dark(#355f83,#a4c6e2); }
+    #botainer-study .bt-side-actions { display:flex; gap:5px; flex-wrap:wrap; flex-shrink:0; border-top:1px solid var(--bt-line); padding-top:10px; }
+    #botainer-study .bt-main { grid-area:main; display:flex; flex-direction:column; min-width:0; min-height:0; padding:12px 14px 10px; }
+    #botainer-study [data-slot="workspace"] { display:flex; flex-direction:column; flex:1; min-width:0; min-height:0; }
+    #botainer-study .bt-eyebrow { color:var(--bt-muted); font-size:11px; margin-bottom:2px; overflow-wrap:anywhere; }
+    #botainer-study h2 { font-size:20px; font-weight:500; line-height:1.25; letter-spacing:-.3px; margin:0 0 4px; overflow-wrap:anywhere; }
+    #botainer-study h3 { font-size:15px; font-weight:500; margin:0 0 7px; }
+    #botainer-study p { margin:7px 0; }
+    #botainer-study .bt-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:6px 12px; flex-wrap:wrap; flex-shrink:0; }
+    #botainer-study .bt-heading > div:first-child { min-width:0; flex:1 1 150px; }
+    #botainer-study .bt-path { color:var(--bt-muted); font:11px/1.5 ui-monospace,SFMono-Regular,monospace; overflow-wrap:anywhere; }
+    #botainer-study .bt-badges { display:flex; gap:4px 11px; align-items:center; flex-wrap:wrap; flex-shrink:0; margin:8px 0; font-size:11px; color:var(--bt-muted); }
+    #botainer-study .bt-badge { border-radius:12px; padding:1px 7px; background:var(--bt-side); color:var(--bt-fg); }
+    #botainer-study .bt-badge[data-state="running"] { background:var(--bt-sel); color:var(--bt-accent); }
+    #botainer-study .bt-badge[data-state="queued"], #botainer-study .bt-badge[data-state="unknown"] { color:var(--bt-warn); }
+    #botainer-study .bt-tabs { display:flex; gap:18px; flex-shrink:0; overflow-x:auto; white-space:nowrap; border-bottom:1px solid var(--bt-line); margin-bottom:10px; }
+    #botainer-study .bt-tabs button { flex:0 0 auto; border:0; border-radius:0; background:transparent; color:var(--bt-muted); padding:7px 0 9px; font-size:12px; }
+    #botainer-study .bt-tabs button[aria-selected="true"] { color:var(--bt-fg); box-shadow:inset 0 -2px var(--bt-accent); }
+    #botainer-study [role="tabpanel"] { min-width:0; min-height:0; }
+    #botainer-study #bt-panel-terminal { display:flex; flex-direction:column; flex:1; min-height:300px; }
+    #botainer-study .bt-terminal { display:flex; flex-direction:column; flex:1; min-width:0; min-height:0; background:var(--bt-term); border:1px solid var(--bt-line); border-radius:6px; padding:10px 12px; }
+    #botainer-study .bt-terminal-top { display:flex; justify-content:space-between; flex-wrap:wrap; flex-shrink:0; gap:4px 8px; border-bottom:1px solid var(--bt-line); padding-bottom:7px; font-size:11px; color:var(--bt-muted); }
+    #botainer-study .bt-transcript { flex:1; min-height:220px; padding:10px 0; font:13px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace; white-space:pre-wrap; overflow-wrap:anywhere; }
+    #botainer-study .bt-entry { margin:0 0 11px; }
+    #botainer-study .bt-entry[data-kind="input"] { color:var(--bt-accent); }
+    #botainer-study .bt-entry[data-kind="system"] { color:var(--bt-muted); }
+    #botainer-study .bt-input-row { display:flex; align-items:flex-end; flex-wrap:wrap; flex-shrink:0; gap:8px; border-top:1px solid var(--bt-line); padding-top:8px; }
+    #botainer-study .bt-input-row label { flex:1 1 220px; font-size:11px; }
+    #botainer-study .bt-input-row textarea { resize:vertical; min-height:40px; max-height:30vh; font:13px/1.5 ui-monospace,SFMono-Regular,monospace; margin-top:3px; }
+    #botainer-study .bt-input-row button { margin-bottom:1px; }
+    #botainer-study .bt-footer { display:flex; justify-content:space-between; align-items:center; gap:5px 12px; flex-wrap:wrap; flex-shrink:0; margin-top:7px; }
+    #botainer-study .bt-caption { font-size:11px; color:var(--bt-muted); overflow-wrap:anywhere; }
+    #botainer-study .bt-callout { padding:16px 0; min-height:250px; overflow:auto; }
+    #botainer-study .bt-callout p { max-width:58ch; color:var(--bt-muted); }
+    #botainer-study .bt-actions { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:16px; }
+    #botainer-study .bt-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin:16px 0; }
+    #botainer-study .bt-fields .bt-full { grid-column:1/-1; }
+    #botainer-study .bt-fields textarea { font:12px/1.6 ui-monospace,SFMono-Regular,monospace; min-height:100px; }
+    #botainer-study .bt-code-editor, #botainer-study .bt-fields .bt-code-editor { width:100%; min-height:300px; resize:vertical; font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace; tab-size:2; white-space:pre; overflow:auto; }
+    #botainer-study .bt-file-row { display:flex; align-items:center; gap:8px; width:100%; min-width:0; padding:8px 10px; text-align:left; border:0; border-bottom:1px solid var(--bt-line); border-radius:0; }
+    #botainer-study .bt-file-row > span { min-width:0; overflow-wrap:anywhere; }
+    #botainer-study .bt-file-row[aria-pressed="true"] { background:var(--bt-sel); }
+    #botainer-study .bt-file-layout { display:grid; grid-template-columns:minmax(140px,220px) minmax(0,1fr); gap:14px; min-width:0; min-height:0; }
+    #botainer-study .bt-file-list { min-width:0; overflow:auto; }
+    #botainer-study .bt-validation { padding:9px 12px; border-left:3px solid var(--bt-accent); background:var(--bt-side); color:var(--bt-fg); font-size:12px; overflow-wrap:anywhere; }
+    #botainer-study .bt-validation[data-error="true"], #botainer-study .bt-validation.bt-error { border-color:var(--bt-danger); color:var(--bt-danger); }
+    #botainer-study .bt-validation:empty { display:none; }
+    #botainer-study .bt-config-diff, #botainer-study .bt-code-preview { white-space:pre-wrap; overflow-wrap:anywhere; font:12px/1.7 ui-monospace,SFMono-Regular,monospace; }
+    #botainer-study .bt-instance-row { padding:12px 0 15px 14px; border-bottom:1px solid var(--bt-line); }
+    #botainer-study .bt-folder-picker { padding:16px; border:1px solid var(--bt-line); border-radius:6px; background:var(--bt-side); }
+    #botainer-study .bt-file-preview { margin-top:18px; }
+    #botainer-study .bt-summary { border-top:1px solid var(--bt-line); border-bottom:1px solid var(--bt-line); padding:11px 0; margin:14px 0; overflow-wrap:anywhere; }
+    #botainer-study .bt-facts { display:grid; grid-template-columns:135px minmax(0,1fr); gap:10px 16px; margin:14px 0; }
+    #botainer-study .bt-facts dt { color:var(--bt-muted); }
+    #botainer-study .bt-facts dd { margin:0; overflow-wrap:anywhere; }
+    #botainer-study .bt-notice { flex-shrink:0; max-height:100px; overflow:auto; font-size:12px; color:var(--bt-accent); padding:7px 0 0; overflow-wrap:anywhere; }
+    #botainer-study .bt-notice:empty { display:none; }
+    #botainer-study .bt-notice[data-error="true"] { color:var(--bt-danger); }
+    #botainer-study .bt-machine { border-bottom:1px solid var(--bt-line); padding:14px 0; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+    #botainer-study .bt-flow { flex:1; min-width:0; min-height:380px; }
+    #botainer-study .bt-flow-intro { color:var(--bt-muted); }
+    #botainer-study details { margin:12px 0; }
+    #botainer-study summary { color:var(--bt-muted); font-size:12px; }
+    #botainer-study .bt-steps { color:var(--bt-muted); font-size:11px; display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+    #botainer-study .bt-steps strong { font-weight:500; color:var(--bt-fg); }
+    #botainer-study[data-nav-open="false"] .bt-layout, #botainer-study[data-focus-terminal="true"] .bt-layout { grid-template-columns:minmax(0,1fr); grid-template-areas:"main"; }
+    #botainer-study[data-nav-open="false"] .bt-sidebar, #botainer-study[data-focus-terminal="true"] .bt-sidebar { display:none; }
+    #botainer-study[data-focus-terminal="true"] .bt-heading .bt-path, #botainer-study[data-focus-terminal="true"] .bt-badges { display:none; }
+    #botainer-study[data-focus-terminal="true"] .bt-heading { margin-bottom:7px; }
+    body.bt-standalone #botainer-study { height:100vh; height:100dvh; display:flex; flex-direction:column; overflow:hidden; }
+    body.bt-standalone #botainer-study .bt-window { flex:1; min-height:0; border:0; border-radius:0; overflow:hidden; }
+    body.bt-standalone #botainer-study .bt-layout, body.bt-standalone #botainer-study .bt-main, body.bt-standalone #botainer-study [data-slot="workspace"] { overflow:hidden; }
+    body.bt-standalone #botainer-study [role="tabpanel"] { flex:1; overflow:auto; overscroll-behavior:contain; }
+    body.bt-standalone #botainer-study #bt-panel-terminal { min-height:0; overflow:hidden; }
+    body.bt-standalone #botainer-study .bt-transcript { min-height:0; overflow:auto; overscroll-behavior:contain; scrollbar-gutter:stable; }
+    body.bt-standalone #botainer-study .bt-flow { min-height:0; overflow:auto; overscroll-behavior:contain; }
+    @media(max-width:760px) {
+      #botainer-study .bt-layout { grid-template-columns:minmax(0,1fr); grid-template-areas:"main"; }
+      #botainer-study .bt-sidebar { display:none; position:absolute; z-index:30; inset:0 auto 0 0; width:min(var(--bt-sidebar-width),100%); box-shadow:12px 0 24px #0002; overflow:hidden; }
+      #botainer-study[data-nav-open="true"]:not([data-focus-terminal="true"]) .bt-sidebar { display:flex; }
+      #botainer-study .bt-main { padding:10px; }
+      #botainer-study .bt-brand span { display:none; }
+      #botainer-study .bt-fields { grid-template-columns:1fr; }
+      #botainer-study .bt-file-layout { grid-template-columns:1fr; }
+      #botainer-study .bt-file-list { max-height:180px; }
+    }
+    @media(max-width:420px) {
+      #botainer-study .bt-top { padding:7px 9px; }
+      #botainer-study .bt-top-actions { gap:4px; }
+      #botainer-study .bt-top-actions > button { font-size:12px; padding:6px 8px; }
+      #botainer-study .bt-brand { font-size:16px; }
+      #botainer-study .bt-facts { grid-template-columns:1fr; gap:3px; }
+      #botainer-study .bt-facts dd { margin-bottom:8px; }
+      #botainer-study .bt-heading h2 { font-size:18px; }
+      #botainer-study .bt-tabs { gap:15px; }
+      #botainer-study .bt-terminal { padding:9px; }
+      #botainer-study .bt-input-row { flex-wrap:nowrap; }
+      #botainer-study .bt-input-row label { flex:1 1 140px; }
+      #botainer-study .bt-input-row button { flex-shrink:0; }
+      #botainer-study .bt-footer .bt-caption { display:none; }
+      #botainer-study .bt-footer { justify-content:flex-end; }
+    }
+    @media(max-height:650px) {
+      body.bt-standalone #botainer-study .bt-heading .bt-path { display:none; }
+      body.bt-standalone #botainer-study .bt-badges > span:nth-child(n+4) { display:none; }
+      body.bt-standalone #botainer-study .bt-top { padding-top:4px; padding-bottom:4px; }
+      body.bt-standalone #botainer-study .bt-view-options { margin:0; }
+      body.bt-standalone #botainer-study .bt-sidebar { overflow:auto; }
+      body.bt-standalone #botainer-study .bt-projects { flex:1 0 120px; }
+    }
+    @media(pointer:coarse) { #botainer-study button, #botainer-study summary { min-height:44px; } #botainer-study input, #botainer-study select, #botainer-study textarea, #botainer-study .bt-sidebar-filters input, #botainer-study .bt-sidebar-filters select { font-size:16px; min-height:44px; } #botainer-study .bt-view-options > summary { display:flex; align-items:center; } }
+  </style>
+  <div class="bt-demo"><span>Local prototype · sample data only</span><button type="button" class="bt-quiet cursor-interaction" data-action="reset">Reset demo</button></div>
+  <div class="bt-window">
+    <header class="bt-top">
+      <div class="bt-brand">botainer <span>Your work, across machines</span></div>
+      <div class="bt-top-actions">
+        <button type="button" class="bt-primary cursor-interaction" data-action="new-session">New session</button>
+        <details class="bt-view-options">
+          <summary class="cursor-interaction">View</summary>
+          <div class="bt-view-menu">
+            <button type="button" class="cursor-interaction" data-action="focus-terminal" aria-pressed="false">Focus terminal</button>
+            <label>Project sidebar width<input type="range" data-slot="sidebar-width" min="240" max="420" step="10" value="280" aria-label="Project sidebar width in pixels"></label>
+            <p class="bt-caption">Projects appear on the left. On small screens, Projects opens the list from the left over the workspace.</p>
+          </div>
+        </details>
+        <button type="button" class="cursor-interaction" data-action="toggle-nav" aria-controls="bt-project-sidebar" aria-expanded="true">Projects</button>
+      </div>
+    </header>
+    <div class="bt-layout">
+      <aside class="bt-sidebar" id="bt-project-sidebar" aria-label="Project and session navigation">
+        <div class="bt-sidebar-filters">
+          <label>Find projects and sessions<input type="search" data-slot="project-search" placeholder="Search…" autocomplete="off" aria-label="Find projects and sessions"></label>
+          <div class="bt-filter-grid">
+            <label>Machine<select data-slot="host-filter" aria-label="Filter projects by machine"></select></label>
+            <label>Botainer instance<select data-slot="installation-filter" aria-label="Filter projects by Botainer instance"></select></label>
+          </div>
+          <label class="bt-sort-control">Sort<select data-slot="project-sort" aria-label="Sort projects"><option value="recent">Recent activity</option><option value="name">Project name</option><option value="active">Active first</option></select></label>
+        </div>
+        <div class="bt-projects" data-slot="projects"></div>
+        <div class="bt-side-actions"><button type="button" class="bt-quiet cursor-interaction" data-action="new-project">Add project</button><button type="button" class="bt-quiet cursor-interaction" data-action="machines">Machines</button></div>
+      </aside>
+      <main class="bt-main">
+        <section data-slot="workspace">
+          <div class="bt-heading"><div><div class="bt-eyebrow" data-slot="breadcrumb"></div><h2 data-slot="title"></h2><div class="bt-path" data-slot="path"></div></div><div data-slot="header-action"></div></div>
+          <div class="bt-badges" data-slot="badges"></div>
+          <nav class="bt-tabs" role="tablist" aria-label="Workspace views">
+            <button type="button" role="tab" class="cursor-interaction" id="bt-tab-terminal" aria-controls="bt-panel-terminal" aria-selected="true" data-tab="terminal">Terminal</button>
+            <button type="button" role="tab" class="cursor-interaction" id="bt-tab-settings" aria-controls="bt-panel-settings" aria-selected="false" data-tab="settings">Config</button>
+            <button type="button" role="tab" class="cursor-interaction" id="bt-tab-files" aria-controls="bt-panel-files" aria-selected="false" data-tab="files">Files</button>
+            <button type="button" role="tab" class="cursor-interaction" id="bt-tab-details" aria-controls="bt-panel-details" aria-selected="false" data-tab="details">Run details</button>
+          </nav>
+          <section id="bt-panel-terminal" role="tabpanel" aria-labelledby="bt-tab-terminal"></section>
+          <section id="bt-panel-settings" role="tabpanel" aria-labelledby="bt-tab-settings" hidden></section>
+          <section id="bt-panel-files" role="tabpanel" aria-labelledby="bt-tab-files" hidden></section>
+          <section id="bt-panel-details" role="tabpanel" aria-labelledby="bt-tab-details" hidden></section>
+        </section>
+        <section class="bt-flow" data-slot="flow" hidden></section>
+        <div class="bt-notice" data-slot="notice" aria-live="polite"></div>
+      </main>
+    </div>
+  </div>
+  <script>
+/* BOTAINER_MODEL */
+/* BOTAINER_CONTROLLER */
+  </script>
+</div>

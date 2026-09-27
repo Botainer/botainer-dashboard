@@ -1,0 +1,24 @@
+apiVersion: botainer-plugin-v1
+name: agent-dashboard-test
+version: 0.0.1
+description: Repository-authored deterministic terminal fixture; isolated test source only
+license: Apache-2.0
+maintainer: Botainer dashboard contributors
+botainer_min_version: 0.1.0a0
+tier: first-party
+kind: agent
+trust_required: declarative
+runtimes:
+  - docker
+image:
+  source: registry
+  tag: alpine:3
+capabilities: []
+hooks: []
+commands: []
+contributes:
+  entrypoint_wrap:
+    layer: inner
+    command:
+      - /bin/sh
+      - /mnt/dashboard-fixture/terminal.sh

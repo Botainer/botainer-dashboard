@@ -1,0 +1,40 @@
+# Local/private material
+private/
+.local/
+github/
+.env
+.env.*
+!.env.example
+.botainer/
+.botainer-dashboard/
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+auth*.json
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Frontend and generated application builds
+node_modules/
+dist/
+build/
+coverage/
+
+# Editor and operating-system files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*.log

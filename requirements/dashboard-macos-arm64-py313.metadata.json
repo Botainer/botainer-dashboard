@@ -1,0 +1,519 @@
+{
+  "status": "Exact wheel selection used by the retained development runtime; independent recipient installation is not qualified.",
+  "target": {
+    "implementation": "CPython",
+    "python_abi": "cp313",
+    "platform": "macOS arm64",
+    "scope": "One selected wheel per package; not a cross-platform lock or interpreter distribution."
+  },
+  "direct_requirements": [
+    "fastapi==0.141.1",
+    "uvicorn==0.53.0",
+    "websockets==17.1",
+    "pydantic==2.13.5"
+  ],
+  "packages": [
+    {
+      "name": "annotated-doc",
+      "version": "0.0.5",
+      "metadata_url": "https://pypi.org/pypi/annotated-doc/0.0.5/json",
+      "requires_python": ">=3.9",
+      "requires_dist": [],
+      "license_expression": "MIT",
+      "license": null,
+      "license_classifiers": [],
+      "project_urls": {
+        "Changelog": "https://github.com/fastapi/annotated-doc/release-notes.md",
+        "Documentation": "https://github.com/fastapi/annotated-doc",
+        "Homepage": "https://github.com/fastapi/annotated-doc",
+        "Issues": "https://github.com/fastapi/annotated-doc/issues",
+        "Repository": "https://github.com/fastapi/annotated-doc"
+      },
+      "registry_reported_vulnerabilities": [],
+      "wheel": {
+        "filename": "annotated_doc-0.0.5-py3-none-any.whl",
+        "url": "https://files.pythonhosted.org/packages/3e/30/e900b21425a860e195f32e37657aa1f7c7f2b1bfb26f03ca209b90933c06/annotated_doc-0.0.5-py3-none-any.whl",
+        "digests": {
+          "blake2b_256": "3e30e900b21425a860e195f32e37657aa1f7c7f2b1bfb26f03ca209b90933c06",
+          "md5": "49ccb90689ca81e8b1d283ff4794172b",
+          "sha256": "117bac03a25ede5df5440e855b32d556049ca169ead221505badf432fed4b101"
+        },
+        "size": 5302,
+        "upload_time_iso_8601": "2026-07-28T13:50:57.239109Z",
+        "requires_python": ">=3.9",
+        "yanked": false
+      }
+    },
+    {
+      "name": "annotated-types",
+      "version": "0.8.0",
+      "metadata_url": "https://pypi.org/pypi/annotated-types/0.8.0/json",
+      "requires_python": ">=3.10",
+      "requires_dist": [],
+      "license_expression": "MIT",
+      "license": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: MIT License"
+      ],
+      "project_urls": {
+        "Changelog": "https://github.com/annotated-types/annotated-types/releases",
+        "Homepage": "https://github.com/annotated-types/annotated-types",
+        "Source": "https://github.com/annotated-types/annotated-types"
+      },
+      "registry_reported_vulnerabilities": [],
+      "wheel": {
+        "filename": "annotated_types-0.8.0-py3-none-any.whl",
+        "url": "https://files.pythonhosted.org/packages/99/91/8acff4f5e50511b911bbccb72b8628a49c68ce14148cd9f6431094859a90/annotated_types-0.8.0-py3-none-any.whl",
+        "digests": {
+          "blake2b_256": "99918acff4f5e50511b911bbccb72b8628a49c68ce14148cd9f6431094859a90",
+          "md5": "1959042ee69ece0a558a30aa700cfc59",
+          "sha256": "f072f4d804ea359e4eaf198b1af7a8b0943881a87f31bb764f8bf219bb9419e0"
+        },
+        "size": 13427,
+        "upload_time_iso_8601": "2026-07-23T20:16:12.938651Z",
+        "requires_python": ">=3.10",
+        "yanked": false
+      }
+    },
+    {
+      "name": "anyio",
+      "version": "4.15.1",
+      "metadata_url": "https://pypi.org/pypi/anyio/4.15.1/json",
+      "requires_python": ">=3.10",
+      "requires_dist": [
+        "exceptiongroup>=1.0.2; python_version < \"3.11\"",
+        "idna>=2.8",
+        "typing_extensions>=4.16.0; python_version < \"3.15\"",
+        "trio>=0.32.0; extra == \"trio\""
+      ],
+      "license_expression": "MIT",
+      "license": null,
+      "license_classifiers": [],
+      "project_urls": {
+        "Changelog": "https://anyio.readthedocs.io/en/stable/versionhistory.html",
+        "Documentation": "https://anyio.readthedocs.io/en/latest/",
+        "Issue tracker": "https://github.com/agronholm/anyio/issues",
+        "Source code": "https://github.com/agronholm/anyio"
+      },
+      "registry_reported_vulnerabilities": [],
+      "wheel": {
+        "filename": "anyio-4.15.1-py3-none-any.whl",
+        "url": "https://files.pythonhosted.org/packages/12/b8/4bd346e22b28902df4d651910f5242c28d84e4a5c2435ca5c3f797ed7e2e/anyio-4.15.1-py3-none-any.whl",
+        "digests": {
+          "blake2b_256": "12b84bd346e22b28902df4d651910f5242c28d84e4a5c2435ca5c3f797ed7e2e",
+          "md5": "c2ab8e46292b23c5d22e66732582dee2",
+          "sha256": "6152fdbbf9a77fdec97731721bebf7c4c44f7c29b424b0065826173efc7ed101"
+        },
+        "size": 132079,
+        "upload_time_iso_8601": "2026-09-05T10:42:37.923487Z",
+        "requires_python": ">=3.10",
+        "yanked": false
+      }
+    },
+    {
+      "name": "click",
+      "version": "8.5.0",
+      "metadata_url": "https://pypi.org/pypi/click/8.5.0/json",
+      "requires_python": ">=3.10",
+      "requires_dist": [],
+      "license_expression": "BSD-3-Clause",
+      "license": null,
+      "license_classifiers": [],
+      "project_urls": {
+        "Changes": "https://click.palletsprojects.com/page/changes/",
+        "Chat": "https://discord.gg/pallets",
+        "Documentation": "https://click.palletsprojects.com/",
+        "Donate": "https://palletsprojects.com/donate",
+        "Source": "https://github.com/pallets/click/"
+      },
+      "registry_reported_vulnerabilities": [],
+      "wheel": {
+        "filename": "click-8.5.0-py3-none-any.whl",
+        "url": "https://files.pythonhosted.org/packages/58/50/6c0d534c5f134586a8e1ba4e330569e32f057e33372ae556463212fb4cd3/click-8.5.0-py3-none-any.whl",
+        "digests": {
+          "blake2b_256": "58506c0d534c5f134586a8e1ba4e330569e32f057e33372ae556463212fb4cd3",
+          "md5": "2f0b6de9bc2aa6bd8ff4200bc7d14bbe",
+          "sha256": "255bc9599cf7748b4b1a446ccc735421bd08a2ae529a8b88597d3de5664ee360"
+        },
+        "size": 125251,
+        "upload_time_iso_8601": "2026-08-26T13:33:12.928043Z",
+        "requires_python": ">=3.10",
+        "yanked": false
+      }
+    },
+    {
+      "name": "fastapi",
+      "version": "0.141.1",
+      "metadata_url": "https://pypi.org/pypi/fastapi/0.141.1/json",
+      "requires_python": ">=3.10",
+      "requires_dist": [
+        "starlette>=0.46.0",
+        "pydantic>=2.9.0",
+        "typing-extensions>=4.8.0",
+        "typing-inspection>=0.4.2",
+        "annotated-doc>=0.0.2",
+        "fastapi-cli[standard]>=0.0.32; extra == \"standard\"",
+        "fastar>=0.9.0; extra == \"standard\"",
+        "httpx<1.0.0,>=0.23.0; extra == \"standard\"",
+        "jinja2>=3.1.5; extra == \"standard\"",
+        "python-multipart>=0.0.18; extra == \"standard\"",
+        "email-validator>=2.0.0; extra == \"standard\"",
+        "uvicorn[standard]>=0.12.0; extra == \"standard\"",
+        "pydantic-settings>=2.0.0; extra == \"standard\"",
+        "pydantic-extra-types>=2.0.0; extra == \"standard\"",
+        "fastapi-cli[standard-no-fastapi-cloud-cli]>=0.0.32; extra == \"standard-no-fastapi-cloud-cli\"",
+        "httpx<1.0.0,>=0.23.0; extra == \"standard-no-fastapi-cloud-cli\"",
+        "jinja2>=3.1.5; extra == \"standard-no-fastapi-cloud-cli\"",
+        "python-multipart>=0.0.18; extra == \"standard-no-fastapi-cloud-cli\"",
+        "email-validator>=2.0.0; extra == \"standard-no-fastapi-cloud-cli\"",
+        "uvicorn[standard]>=0.12.0; extra == \"standard-no-fastapi-cloud-cli\"",
+        "pydantic-settings>=2.0.0; extra == \"standard-no-fastapi-cloud-cli\"",
+        "pydantic-extra-types>=2.0.0; extra == \"standard-no-fastapi-cloud-cli\"",
+        "fastapi-cli[standard]>=0.0.32; extra == \"all\"",
+        "httpx<1.0.0,>=0.23.0; extra == \"all\"",
+        "jinja2>=3.1.5; extra == \"all\"",
+        "python-multipart>=0.0.18; extra == \"all\"",
+        "itsdangerous>=1.1.0; extra == \"all\"",
+        "pyyaml>=5.3.1; extra == \"all\"",
+        "email-validator>=2.0.0; extra == \"all\"",
+        "uvicorn[standard]>=0.12.0; extra == \"all\"",
+        "pydantic-settings>=2.0.0; extra == \"all\"",
+        "pydantic-extra-types>=2.0.0; extra == \"all\""
+      ],
+      "license_expression": "MIT",
+      "license": null,
+      "license_classifiers": [],
+      "project_urls": {
+        "Changelog": "https://fastapi.tiangolo.com/release-notes/",
+        "Documentation": "https://fastapi.tiangolo.com/",
+        "Homepage": "https://github.com/fastapi/fastapi",
+        "Issues": "https://github.com/fastapi/fastapi/issues",
+        "Repository": "https://github.com/fastapi/fastapi"
+      },
+      "registry_reported_vulnerabilities": [],
+      "wheel": {
+        "filename": "fastapi-0.141.1-py3-none-any.whl",
+        "url": "https://files.pythonhosted.org/packages/cb/03/10388a42375ee7e4ac9b94eb2c5c569c8b5795e377e701c9ac3ad63de890/fastapi-0.141.1-py3-none-any.whl",
+        "digests": {
+          "blake2b_256": "cb0310388a42375ee7e4ac9b94eb2c5c569c8b5795e377e701c9ac3ad63de890",
+          "md5": "a7044cbaff44ded36adf9e06eca7158a",
+          "sha256": "bfb91aa2d334c61cb35ba9a116fc123b3d3df31640b801cf57a7a78ec3f603b3"
+        },
+        "size": 131954,
+        "upload_time_iso_8601": "2026-07-29T17:18:04.364385Z",
+        "requires_python": ">=3.10",
+        "yanked": false
+      }
+    },
+    {
+      "name": "h11",
+      "version": "0.16.0",
+      "metadata_url": "https://pypi.org/pypi/h11/0.16.0/json",
+      "requires_python": ">=3.8",
+      "requires_dist": [],
+      "license_expression": null,
+      "license": "MIT",
+      "license_classifiers": [
+        "License :: OSI Approved :: MIT License"
+      ],
+      "project_urls": {
+        "Homepage": "https://github.com/python-hyper/h11"
+      },
+      "registry_reported_vulnerabilities": [],
+      "wheel": {
+        "filename": "h11-0.16.0-py3-none-any.whl",
+        "url": "https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl",
+        "digests": {
+          "blake2b_256": "044b29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1",
+          "md5": "ab5835960dca6f63c9317c218f646e66",
+          "sha256": "63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86"
+        },
+        "size": 37515,
+        "upload_time_iso_8601": "2025-04-24T03:35:24.344199Z",
+        "requires_python": ">=3.8",
+        "yanked": false
+      }
+    },
+    {
+      "name": "idna",
+      "version": "3.20",
+      "metadata_url": "https://pypi.org/pypi/idna/3.20/json",
+      "requires_python": ">=3.9",
+      "requires_dist": [
+        "ruff>=0.16.0; extra == \"all\"",
+        "mypy>=1.11.2; extra == \"all\"",
+        "ty>=0.0.37; extra == \"all\"",
+        "pytest>=8.3.2; extra == \"all\"",
+        "hypothesis>=6.141.1; extra == \"all\"",
+        "coverage>=7.10.0; extra == \"all\""
+      ],
+      "license_expression": "BSD-3-Clause",
+      "license": null,
+      "license_classifiers": [],
+      "project_urls": {
+        "Changelog": "https://github.com/kjd/idna/blob/master/HISTORY.md",
+        "Issue tracker": "https://github.com/kjd/idna/issues",
+        "Source": "https://github.com/kjd/idna"
+      },
+      "registry_reported_vulnerabilities": [],
+      "wheel": {
+        "filename": "idna-3.20-py3-none-any.whl",
+        "url": "https://files.pythonhosted.org/packages/58/a2/bb081bab032533a855d44de1d56f8e8426114ff1ba5d1f07a438a0a654f8/idna-3.20-py3-none-any.whl",
+        "digests": {
+          "blake2b_256": "58a2bb081bab032533a855d44de1d56f8e8426114ff1ba5d1f07a438a0a654f8",
+          "md5": "9481f70139501176693e1833735309ea",
+          "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c"
+        },
+        "size": 69583,
+        "upload_time_iso_8601": "2026-09-17T14:11:03.168153Z",
+        "requires_python": ">=3.9",
+        "yanked": false
+      }
+    },
+    {
+      "name": "pydantic",
+      "version": "2.13.5",
+      "metadata_url": "https://pypi.org/pypi/pydantic/2.13.5/json",
+      "requires_python": ">=3.9",
+      "requires_dist": [
+        "annotated-types>=0.6.0",
+        "pydantic-core==2.46.5",
+        "typing-extensions>=4.14.1",
+        "typing-inspection>=0.4.2",
+        "email-validator>=2.0.0; extra == \"email\"",
+        "tzdata; (python_version >= \"3.9\" and platform_system == \"Windows\") and extra == \"timezone\""
+      ],
+      "license_expression": "MIT",
+      "license": null,
+      "license_classifiers": [],
+      "project_urls": {
+        "Changelog": "https://docs.pydantic.dev/latest/changelog/",
+        "Documentation": "https://docs.pydantic.dev",
+        "Funding": "https://github.com/sponsors/samuelcolvin",
+        "Homepage": "https://github.com/pydantic/pydantic",
+        "Source": "https://github.com/pydantic/pydantic"
+      },
+      "registry_reported_vulnerabilities": [],
+      "wheel": {
+        "filename": "pydantic-2.13.5-py3-none-any.whl",
+        "url": "https://files.pythonhosted.org/packages/eb/47/c95ffc2009878c7aac0c5e08528022dcb885933252a88b5f170058014464/pydantic-2.13.5-py3-none-any.whl",
+        "digests": {
+          "blake2b_256": "eb47c95ffc2009878c7aac0c5e08528022dcb885933252a88b5f170058014464",
+          "md5": "40d43f06ec754228362bd1b1a616a1c7",
+          "sha256": "346a034f080da3755d8e9cb5e00e8b07de1d39e4f6e2c87d8ab7cafa0b269a73"
+        },
+        "size": 472589,
+        "upload_time_iso_8601": "2026-08-28T14:03:59.136157Z",
+        "requires_python": ">=3.9",
+        "yanked": false
+      }
+    },
+    {
+      "name": "pydantic-core",
+      "version": "2.46.5",
+      "metadata_url": "https://pypi.org/pypi/pydantic-core/2.46.5/json",
+      "requires_python": ">=3.9",
+      "requires_dist": [
+        "typing-extensions>=4.14.1"
+      ],
+      "license_expression": "MIT",
+      "license": null,
+      "license_classifiers": [],
+      "project_urls": {
+        "Funding": "https://github.com/sponsors/samuelcolvin",
+        "Homepage": "https://github.com/pydantic",
+        "Source": "https://github.com/pydantic/pydantic/tree/main/pydantic-core"
+      },
+      "registry_reported_vulnerabilities": [],
+      "wheel": {
+        "filename": "pydantic_core-2.46.5-cp313-cp313-macosx_11_0_arm64.whl",
+        "url": "https://files.pythonhosted.org/packages/21/43/6323b1f8b217780454c61304bcd2b38ae4762f50754414124603ccc90bb2/pydantic_core-2.46.5-cp313-cp313-macosx_11_0_arm64.whl",
+        "digests": {
+          "blake2b_256": "21436323b1f8b217780454c61304bcd2b38ae4762f50754414124603ccc90bb2",
+          "md5": "b77114e97d4ce1d30a12bd825da49167",
+          "sha256": "f332f0e72a5a0400141f830744e141bf9f97917878dbe968669e8a7fefea78ff"
+        },
+        "size": 1922768,
+        "upload_time_iso_8601": "2026-08-28T09:58:49.580899Z",
+        "requires_python": ">=3.9",
+        "yanked": false
+      }
+    },
+    {
+      "name": "starlette",
+      "version": "1.6.0",
+      "metadata_url": "https://pypi.org/pypi/starlette/1.6.0/json",
+      "requires_python": ">=3.10",
+      "requires_dist": [
+        "anyio<5,>=3.6.2",
+        "typing-extensions>=4.10.0; python_version < \"3.13\"",
+        "httpx2>=2.0.0; extra == \"full\"",
+        "httpx<0.29.0,>=0.27.0; extra == \"full\"",
+        "itsdangerous; extra == \"full\"",
+        "jinja2; extra == \"full\"",
+        "python-multipart>=0.0.18; extra == \"full\"",
+        "pyyaml; extra == \"full\""
+      ],
+      "license_expression": "BSD-3-Clause",
+      "license": null,
+      "license_classifiers": [],
+      "project_urls": {
+        "Changelog": "https://starlette.dev/release-notes/",
+        "Documentation": "https://starlette.dev/",
+        "Funding": "https://github.com/sponsors/Kludex",
+        "Homepage": "https://github.com/Kludex/starlette",
+        "Source": "https://github.com/Kludex/starlette"
+      },
+      "registry_reported_vulnerabilities": [],
+      "wheel": {
+        "filename": "starlette-1.6.0-py3-none-any.whl",
+        "url": "https://files.pythonhosted.org/packages/c8/cb/6a6a47d5b464bd08695d254f3da6e7986cc70c9fa5d778eda57538edfe56/starlette-1.6.0-py3-none-any.whl",
+        "digests": {
+          "blake2b_256": "c8cb6a6a47d5b464bd08695d254f3da6e7986cc70c9fa5d778eda57538edfe56",
+          "md5": "0cc6460b41f0b2b3f10f4cd9a758ee0e",
+          "sha256": "a86dd39d14bb45f85a3d18525215a9ef0cfd1f192ac793220e72598c90335f0c"
+        },
+        "size": 75969,
+        "upload_time_iso_8601": "2026-08-08T18:27:56.196765Z",
+        "requires_python": ">=3.10",
+        "yanked": false
+      }
+    },
+    {
+      "name": "typing-extensions",
+      "version": "4.16.0",
+      "metadata_url": "https://pypi.org/pypi/typing-extensions/4.16.0/json",
+      "requires_python": ">=3.9",
+      "requires_dist": [],
+      "license_expression": "PSF-2.0",
+      "license": null,
+      "license_classifiers": [],
+      "project_urls": {
+        "Bug Tracker": "https://github.com/python/typing_extensions/issues",
+        "Changes": "https://github.com/python/typing_extensions/blob/main/CHANGELOG.md",
+        "Documentation": "https://typing-extensions.readthedocs.io/",
+        "Home": "https://github.com/python/typing_extensions",
+        "Q & A": "https://github.com/python/typing/discussions",
+        "Repository": "https://github.com/python/typing_extensions"
+      },
+      "registry_reported_vulnerabilities": [],
+      "wheel": {
+        "filename": "typing_extensions-4.16.0-py3-none-any.whl",
+        "url": "https://files.pythonhosted.org/packages/49/d3/b8441a820a491ddfc024b0b0cf0393375b75ea13866d9c66727e54c2fc80/typing_extensions-4.16.0-py3-none-any.whl",
+        "digests": {
+          "blake2b_256": "49d3b8441a820a491ddfc024b0b0cf0393375b75ea13866d9c66727e54c2fc80",
+          "md5": "aaa249e7f620bbcecbcbf2b7b11fbd12",
+          "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"
+        },
+        "size": 45571,
+        "upload_time_iso_8601": "2026-07-02T08:40:04.659120Z",
+        "requires_python": ">=3.9",
+        "yanked": false
+      }
+    },
+    {
+      "name": "typing-inspection",
+      "version": "0.4.4",
+      "metadata_url": "https://pypi.org/pypi/typing-inspection/0.4.4/json",
+      "requires_python": ">=3.10",
+      "requires_dist": [
+        "typing-extensions>=4.15.0"
+      ],
+      "license_expression": "MIT",
+      "license": null,
+      "license_classifiers": [],
+      "project_urls": {
+        "Changelog": "https://github.com/pydantic/typing-inspection/blob/main/HISTORY.md",
+        "Documentation": "https://pydantic.github.io/typing-inspection/dev/",
+        "Homepage": "https://github.com/pydantic/typing-inspection",
+        "Source": "https://github.com/pydantic/typing-inspection"
+      },
+      "registry_reported_vulnerabilities": [],
+      "wheel": {
+        "filename": "typing_inspection-0.4.4-py3-none-any.whl",
+        "url": "https://files.pythonhosted.org/packages/67/81/4add07e5172b7ac40d8ed5ff580409a7801a4fe26d529bdd915401dabfbe/typing_inspection-0.4.4-py3-none-any.whl",
+        "digests": {
+          "blake2b_256": "67814add07e5172b7ac40d8ed5ff580409a7801a4fe26d529bdd915401dabfbe",
+          "md5": "edd203f0c9665a1325ef0e986a2daeae",
+          "sha256": "65b8397ba37ccbce054456aaccddfc91e6e3083c92824df348d96ca832f3f147"
+        },
+        "size": 14750,
+        "upload_time_iso_8601": "2026-08-12T12:37:24.648475Z",
+        "requires_python": ">=3.10",
+        "yanked": false
+      }
+    },
+    {
+      "name": "uvicorn",
+      "version": "0.53.0",
+      "metadata_url": "https://pypi.org/pypi/uvicorn/0.53.0/json",
+      "requires_python": ">=3.10",
+      "requires_dist": [
+        "click>=7.0",
+        "h11>=0.8",
+        "typing-extensions>=4.0; python_version < \"3.11\"",
+        "httptools>=0.8.0; extra == \"standard\"",
+        "python-dotenv>=0.13; extra == \"standard\"",
+        "pyyaml>=5.1; extra == \"standard\"",
+        "uvloop>=0.15.1; (sys_platform != \"win32\" and (sys_platform != \"cygwin\" and platform_python_implementation != \"PyPy\")) and extra == \"standard\"",
+        "watchfiles>=0.20; extra == \"standard\"",
+        "websockets>=13.0; extra == \"standard\""
+      ],
+      "license_expression": "BSD-3-Clause",
+      "license": null,
+      "license_classifiers": [],
+      "project_urls": {
+        "Changelog": "https://uvicorn.dev/release-notes",
+        "Funding": "https://github.com/sponsors/Kludex",
+        "Homepage": "https://uvicorn.dev/",
+        "Source": "https://github.com/Kludex/uvicorn"
+      },
+      "registry_reported_vulnerabilities": [],
+      "wheel": {
+        "filename": "uvicorn-0.53.0-py3-none-any.whl",
+        "url": "https://files.pythonhosted.org/packages/76/18/0eea75741ee812e9f598b687619ce2454f6c3a1c5cd21ea990ec6bd26f45/uvicorn-0.53.0-py3-none-any.whl",
+        "digests": {
+          "blake2b_256": "76180eea75741ee812e9f598b687619ce2454f6c3a1c5cd21ea990ec6bd26f45",
+          "md5": "e3777154f60bb7fdb077dec37d9c291e",
+          "sha256": "e8dca71ec86dce5f04e333f0d56cdedf942446e6643b9cea1af0d6d3a02cb03e"
+        },
+        "size": 87081,
+        "upload_time_iso_8601": "2026-09-14T07:44:22.179111Z",
+        "requires_python": ">=3.10",
+        "yanked": false
+      }
+    },
+    {
+      "name": "websockets",
+      "version": "17.1",
+      "metadata_url": "https://pypi.org/pypi/websockets/17.1/json",
+      "requires_python": ">=3.11",
+      "requires_dist": [],
+      "license_expression": "BSD-3-Clause",
+      "license": null,
+      "license_classifiers": [],
+      "project_urls": {
+        "Changelog": "https://websockets.readthedocs.io/en/stable/project/changelog.html",
+        "Documentation": "https://websockets.readthedocs.io/",
+        "Funding": "https://tidelift.com/subscription/pkg/pypi-websockets?utm_source=pypi-websockets&utm_medium=referral&utm_campaign=readme",
+        "Homepage": "https://github.com/python-websockets/websockets",
+        "Tracker": "https://github.com/python-websockets/websockets/issues"
+      },
+      "registry_reported_vulnerabilities": [],
+      "wheel": {
+        "filename": "websockets-17.1-cp313-cp313-macosx_11_0_arm64.whl",
+        "url": "https://files.pythonhosted.org/packages/46/69/66e5b7d01445e0eeb1d4ab419c30315f2c90cf7a8a8cd4ecc47f894dba54/websockets-17.1-cp313-cp313-macosx_11_0_arm64.whl",
+        "digests": {
+          "blake2b_256": "466966e5b7d01445e0eeb1d4ab419c30315f2c90cf7a8a8cd4ecc47f894dba54",
+          "md5": "122f4f102b26cc775dd3fc30b0a5687d",
+          "sha256": "fd8f47dbf2e8adb15c847215f83436de3fdb120b51fdae0fbbdf69fd97a3ad80"
+        },
+        "size": 214947,
+        "upload_time_iso_8601": "2026-08-26T14:56:12.923754Z",
+        "requires_python": ">=3.11",
+        "yanked": false
+      }
+    }
+  ],
+  "metadata_recorded_at": "2026-09-20"
+}

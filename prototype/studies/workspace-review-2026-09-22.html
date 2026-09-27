@@ -1,0 +1,140 @@
+<div id="bd-layout-study" aria-label="Proposed Botainer workspace layout — sample data">
+  <style>
+    #bd-layout-study{--bd-bg:light-dark(#f7f9fb,#151b22);--bd-panel:light-dark(#edf1f5,#1e2731);--bd-fg:light-dark(#202c38,#e1e9f1);--bd-muted:light-dark(#536477,#a8b8c8);--bd-line:light-dark(#cbd5df,#3a4857);--bd-selected:light-dark(#d3e5ee,#294854);--bd-warning:light-dark(#7c4d00,#f0c679);--bd-danger:light-dark(#a12628,#ffaaa5);--bd-terminal:light-dark(#fff,#10161d);--bd-side:220px;--bd-inspector:275px;background:var(--bd-bg);color:var(--bd-fg);font:14px/1.5 ui-sans-serif,system-ui,sans-serif;border:1px solid var(--bd-line);border-radius:8px;overflow:hidden;text-align:left}
+    #bd-layout-study *{box-sizing:border-box}
+    #bd-layout-study [hidden]{display:none!important}
+    #bd-layout-study button,#bd-layout-study select{font:inherit;color:inherit;background:var(--bd-bg);border:1px solid var(--bd-line);border-radius:5px;padding:5px 9px;min-height:32px}
+    #bd-layout-study button:focus-visible,#bd-layout-study select:focus-visible{outline:2px solid var(--bd-muted);outline-offset:2px}
+    #bd-layout-study button[aria-pressed="true"]{background:var(--bd-selected)}
+    #bd-layout-study .bd-top{display:flex;align-items:center;gap:12px;padding:9px 12px;border-bottom:1px solid var(--bd-line);background:var(--bd-panel);flex-wrap:wrap}
+    #bd-layout-study .bd-brand{font-weight:600;flex:1}
+    #bd-layout-study .bd-proposal{font-size:12px;color:var(--bd-muted)}
+    #bd-layout-study .bd-grid{display:grid;grid-template-columns:var(--bd-side) minmax(0,1fr);min-height:520px}
+    #bd-layout-study .bd-sidebar{background:var(--bd-panel);border-right:1px solid var(--bd-line);padding:12px;min-width:0}
+    #bd-layout-study .bd-sidebar label{display:block;font-size:12px;color:var(--bd-muted);margin-bottom:4px}
+    #bd-layout-study .bd-sidebar select{width:100%;margin-bottom:14px}
+    #bd-layout-study .bd-section{font-size:12px;color:var(--bd-muted);margin:16px 0 7px}
+    #bd-layout-study .bd-project{display:block;width:100%;text-align:left;margin-bottom:5px;background:transparent;border-color:transparent;padding:8px}
+    #bd-layout-study .bd-project span{display:block;font-size:12px;color:var(--bd-muted)}
+    #bd-layout-study .bd-project .bd-alert{color:var(--bd-warning)}
+    #bd-layout-study .bd-project .bd-host{color:var(--bd-danger)}
+    #bd-layout-study .bd-main{min-width:0;display:flex;flex-direction:column}
+    #bd-layout-study .bd-tabs{display:flex;gap:4px;padding:6px 10px;border-bottom:1px solid var(--bd-line);overflow-x:auto}
+    #bd-layout-study .bd-tabs button{white-space:nowrap;border-color:transparent}
+    #bd-layout-study .bd-context{padding:9px 12px;display:flex;flex-wrap:wrap;align-items:center;gap:8px;border-bottom:1px solid var(--bd-line)}
+    #bd-layout-study .bd-context strong{font-weight:600;flex:1;min-width:130px}
+    #bd-layout-study .bd-context label{font-size:12px;color:var(--bd-muted)}
+    #bd-layout-study .bd-target{font-size:12px;color:var(--bd-muted)}
+    #bd-layout-study .bd-body{display:flex;min-height:380px;flex:1;min-width:0}
+    #bd-layout-study .bd-work{flex:1;min-width:0;padding:18px;overflow:auto;background:var(--bd-terminal)}
+    #bd-layout-study .bd-terminal{font:13px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;overflow-wrap:anywhere;margin:0}
+    #bd-layout-study .bd-inspector{width:var(--bd-inspector);flex-shrink:0;border-left:1px solid var(--bd-line);padding:14px;overflow:auto;background:var(--bd-bg)}
+    #bd-layout-study .bd-inspector[hidden]{display:none}
+    #bd-layout-study .bd-inspector h3,#bd-layout-study .bd-work h3{font:600 15px/1.5 ui-sans-serif,system-ui,sans-serif;margin:0 0 14px}
+    #bd-layout-study .bd-inspector dl{margin:0}
+    #bd-layout-study dt{font-size:12px;color:var(--bd-muted);margin-top:12px}
+    #bd-layout-study dd{margin:0;overflow-wrap:anywhere}
+    #bd-layout-study .bd-inspector pre{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.7 ui-monospace,monospace}
+    #bd-layout-study .bd-inspector button{margin-top:14px}
+    #bd-layout-study .bd-status{font-size:12px;color:var(--bd-muted);padding:6px 12px;border-top:1px solid var(--bd-line);display:flex;gap:12px;flex-wrap:wrap}
+    #bd-layout-study table{width:100%;border-collapse:collapse;font-size:12px}
+    #bd-layout-study th,#bd-layout-study td{text-align:left;padding:10px 6px;border-bottom:1px solid var(--bd-line);vertical-align:top}
+    #bd-layout-study th{font-weight:500;color:var(--bd-muted)}
+    #bd-layout-study .bd-muted{color:var(--bd-muted)}
+    #bd-layout-study .bd-alert{color:var(--bd-warning)}
+    #bd-layout-study .bd-attention-item{padding:10px 0;border-bottom:1px solid var(--bd-line)}
+    #bd-layout-study .bd-attention-item small{display:block;color:var(--bd-muted)}
+    #bd-layout-study .bd-expanded .bd-work{display:none}
+    #bd-layout-study .bd-expanded .bd-inspector{flex:1;width:auto;border-left:0}
+    #bd-layout-study.bd-focus .bd-grid{grid-template-columns:minmax(0,1fr)}
+    #bd-layout-study.bd-focus .bd-sidebar{display:none}
+    #bd-layout-study.bd-compact .bd-project{padding:4px 8px}
+    #bd-layout-study.bd-compact .bd-section{margin-top:12px}
+    @media(max-width:760px){#bd-layout-study .bd-grid{grid-template-columns:175px minmax(0,1fr)}#bd-layout-study .bd-body:has(.bd-inspector:not([hidden])) .bd-work{display:none}#bd-layout-study .bd-inspector{width:100%;border-left:0}#bd-layout-study .bd-context{gap:5px}}
+    @media(max-width:520px){#bd-layout-study .bd-grid{grid-template-columns:minmax(0,1fr)}#bd-layout-study .bd-sidebar{display:none}#bd-layout-study .bd-tabs{flex-wrap:wrap}#bd-layout-study .bd-tabs button{font-size:12px}}
+  </style>
+  <header class="bd-top"><span class="bd-brand">Botainer</span><span class="bd-proposal">Layout proposal · sample data</span><button type="button" data-view="attention">Attention · 2</button><button type="button" id="bd-focus">Focus terminal</button></header>
+  <div class="bd-grid">
+    <nav class="bd-sidebar" aria-label="Sample projects">
+      <label for="bd-location">Location</label><select id="bd-location"><option value="all">All locations</option><option value="local">This computer</option><option value="cluster">Research cluster</option></select>
+      <div class="bd-section">PINNED</div>
+      <button type="button" class="bd-project" data-project="analysis" data-location="local" aria-pressed="true">★ Genome analysis<span>This computer · Claude</span><span class="bd-alert">🔔 Bell · 2 min ago</span></button>
+      <button type="button" class="bd-project" data-project="simulation" data-location="cluster" aria-pressed="false">★ Simulation<span>Research cluster · Codex</span><span>Queued · 1 job</span></button>
+      <div class="bd-section">RECENTLY OPENED</div>
+      <button type="button" class="bd-project" data-project="report" data-location="local" aria-pressed="false">Report draft<span>Idle · last session yesterday</span></button>
+      <button type="button" class="bd-project" data-project="archive" data-location="cluster" aria-pressed="false">Earlier experiment<span class="bd-alert">Folder unavailable</span></button>
+      <button type="button" class="bd-project" data-project="notes" data-location="local" aria-pressed="false">Personal notes<span class="bd-host">Host · no container</span></button>
+    </nav>
+    <main class="bd-main">
+      <nav class="bd-tabs" aria-label="Sample open work"><button type="button" data-view="terminal" data-tab-project="analysis" aria-pressed="true">Genome / Claude 🔔</button><button type="button" data-view="overview" data-tab-project="simulation" aria-pressed="false">Simulation / Overview</button><button type="button" data-view="output" data-tab-project="simulation" aria-pressed="false">Simulation / Launch output</button></nav>
+      <div class="bd-context"><strong id="bd-context-title">Genome analysis</strong><label>View <select id="bd-view"><option value="terminal">Terminal</option><option value="overview">Project overview</option><option value="output">Recorded output</option><option value="attention">Attention</option></select></label><label>Inspector <select id="bd-panel"><option value="closed">Closed</option><option value="details">Details</option><option value="files">Files</option><option value="config">Project config</option></select></label></div>
+      <div class="bd-body" id="bd-body"><section class="bd-work" id="bd-work" aria-label="Proposed work area"></section><aside class="bd-inspector" id="bd-inspector" aria-label="Proposed utility inspector" hidden></aside></div>
+      <footer class="bd-status"><span id="bd-state">Running · Viewer connected</span><span id="bd-coverage">Attention: connected-view monitoring</span></footer>
+    </main>
+  </div>
+  <script>
+    (() => {
+      const root = document.getElementById('bd-layout-study');
+      const byId = id => root.querySelector('#' + id);
+      const state = { view: 'terminal', panel: 'closed', expanded: false, focus: false, project: 'analysis', density: 'Comfortable', side: 220, inspectorWidth: 275 };
+      const names = { analysis: 'Genome analysis', simulation: 'Simulation', report: 'Report draft', archive: 'Earlier experiment', notes: 'Personal notes' };
+      const work = {
+        terminal: '<pre class="bd-terminal">Claude · Botainer container · This computer\n────────────────────────────────────────\nReviewed the data-loading and validation code.\n\nThe sample identifiers are normalized in two places.\nI can consolidate this in the loader and update the\nvalidation checks.\n\n❯ <span class="bd-muted">Continue the conversation here</span>\n\n\n\n\n<span class="bd-muted">Terminal occupies the remaining work area.</span></pre>',
+        overview: '<h3>Current sessions</h3><table><thead><tr><th>Session</th><th>Runtime</th><th>Available action</th></tr></thead><tbody><tr><td>Codex · Research cluster</td><td>Queued<br><span class="bd-muted">Waiting for resources</span></td><td>Review launch output</td></tr></tbody></table><h3 style="margin-top:24px">Project</h3><div class="bd-muted">Folder verified · Research cluster<br>Next session: use project defaults<br>Recent history collapsed by default</div>',
+        output: '<h3>Recorded launch output</h3><div class="bd-target">Read-only · captured 3 min ago · complete recorded attempt</div><pre class="bd-terminal">Botainer preflight\n\nRuntime: Apptainer\nAgent: Codex\nAllocation request: 1 CPU / 2 GB / 30 minutes\n\n[Native policy warnings and confirmation appear here]\n\nSubmission accepted. Waiting for allocation.</pre>',
+        attention: '<h3>Attention</h3><div class="bd-attention-item"><span class="bd-alert">🔔 Terminal bell</span><br>Genome analysis · Claude · This computer<small>Observed 2 min ago · advisory signal</small></div><div class="bd-attention-item"><span class="bd-alert">Folder unavailable</span><br>Earlier experiment · Research cluster<small>Last check 4 min ago · session state remains separate</small></div><p class="bd-muted">Unopened terminals are not monitored. An empty list does not establish that every agent can continue unattended.</p>'
+      };
+      const panels = {
+        details: '<h3>Session details</h3><dl><dt>Execution</dt><dd>Botainer container</dd><dt>Recorded agent</dt><dd>Claude</dd><dt>Runtime / viewer</dt><dd>Running / Connected</dd><dt>Location</dt><dd>This computer</dd><dt>Attention source</dt><dd>Terminal bell · advisory</dd><dt>Technical identity</dt><dd>Expandable when needed</dd></dl>',
+        files: '<h3>Project files</h3><div class="bd-target">Genome analysis · This computer</div><pre>▾ src/\n    loader.py\n    validate.py\n▾ tests/\n    test_loader.py\n  README.md\n  pyproject.toml</pre><div class="bd-muted">Project-folder view · text preview</div>',
+        config: '<h3>Project config</h3><div class="bd-target">.botainer/config.yaml · Saved</div><pre># Project defaults\nagent: claude\nruntime: docker\n\n# Applies to the next session</pre><div class="bd-muted">Exact text, validation and save state stay together.</div>'
+      };
+      const queuedOverview = work.overview;
+      function overview() {
+        if (state.project === 'simulation') return queuedOverview;
+        if (state.project === 'analysis') return '<h3>Current sessions</h3><table><tr><th>Session</th><th>Runtime</th><th>Attention</th></tr><tr><td>Claude · This computer</td><td>Running</td><td>Bell · 2 min ago</td></tr></table><p class="bd-muted">Project defaults and recent history are available here.</p>';
+        if (state.project === 'archive') return '<h3>Folder unavailable</h3><p>The previous folder cannot be verified. Existing work and history remain separate from folder availability.</p><div class="bd-muted">Proposed recovery: Locate folder · Review last observation</div>';
+        return '<h3>No current sessions</h3><p>Review this project’s files and defaults, or start a new session.</p><div class="bd-muted">' + (state.project === 'notes' ? 'Host · no container · explicit warning required before launch' : 'Botainer project · saved defaults') + '</div>';
+      }
+      function render() {
+        root.classList.toggle('bd-focus', state.focus);
+        root.classList.toggle('bd-compact', state.density === 'Compact');
+        root.style.setProperty('--bd-side', state.side + 'px');
+        root.style.setProperty('--bd-inspector', state.inspectorWidth + 'px');
+        byId('bd-context-title').textContent = state.view === 'attention' ? 'All locations' : names[state.project];
+        byId('bd-work').innerHTML = state.view === 'overview' ? overview() : state.view === 'terminal' && state.project !== 'analysis' ? '<h3>No connected terminal</h3><p class="bd-muted">Choose an available session from Project overview. Changing this view does not start an agent.</p>' : state.view === 'output' && state.project !== 'simulation' ? '<h3>No recorded output selected</h3><p class="bd-muted">Choose a recorded session or launch attempt from Project overview.</p>' : work[state.view];
+        byId('bd-view').value = state.view;
+        byId('bd-panel').value = state.panel;
+        byId('bd-panel').disabled = state.view === 'attention';
+        byId('bd-inspector').hidden = state.panel === 'closed';
+        const otherPanel = '<h3>' + (state.panel === 'config' ? 'Project config' : state.panel === 'files' ? 'Project files' : 'Project details') + '</h3><div>' + names[state.project] + '</div><p class="bd-muted">' + (state.project === 'archive' ? 'Folder unavailable · locate and verify it before opening files or configuration.' : state.project === 'notes' ? 'Host · no container. This registration does not provide Botainer project configuration.' : 'Project tools remain bound to this folder and location.') + '</p>';
+        byId('bd-inspector').innerHTML = state.panel === 'closed' ? '' : (state.project === 'analysis' ? panels[state.panel] : otherPanel) + '<button type="button" id="bd-expand">' + (state.expanded ? 'Back to split view' : 'Expand panel') + '</button>';
+        byId('bd-body').classList.toggle('bd-expanded', state.expanded && state.panel !== 'closed');
+        byId('bd-focus').textContent = state.focus ? 'Show navigation' : 'Focus work';
+        byId('bd-state').textContent = state.view === 'terminal' ? (state.project === 'analysis' ? 'Running · Viewer connected' : 'No terminal connected') : state.view === 'output' ? 'Read-only recorded output' : state.view === 'attention' ? '2 sessions / projects with notices' : 'Project overview · no terminal input';
+        byId('bd-coverage').textContent = state.view === 'terminal' && state.project === 'analysis' ? 'Attention: connected-view monitoring' : 'Presentation proposal · no runtime actions';
+        root.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === state.view && (!b.dataset.tabProject || b.dataset.tabProject === state.project))));
+        root.querySelectorAll('[data-project]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.project === state.project)));
+        const expand = byId('bd-expand');
+        if (expand) expand.onclick = () => { state.expanded = !state.expanded; render(); };
+      }
+      root.querySelectorAll('[data-view]').forEach(b => b.onclick = () => { state.view = b.dataset.view; if (b.dataset.tabProject) state.project = b.dataset.tabProject; state.panel = 'closed'; state.expanded = false; render(); });
+      root.querySelectorAll('[data-project]').forEach(b => b.onclick = () => {
+        state.project = b.dataset.project;
+        state.view = 'overview';
+        state.panel = 'closed'; state.expanded = false; render();
+      });
+      byId('bd-view').onchange = e => { state.view = e.target.value; if (state.view === 'attention') { state.panel = 'closed'; state.expanded = false; } render(); };
+      byId('bd-panel').onchange = e => { state.panel = e.target.value; state.expanded = false; render(); };
+      byId('bd-focus').onclick = () => { state.focus = !state.focus; state.panel = 'closed'; state.expanded = false; render(); };
+      byId('bd-location').onchange = e => root.querySelectorAll('[data-location]').forEach(b => { b.hidden = e.target.value !== 'all' && b.dataset.location !== e.target.value; });
+      render();
+      if (globalThis.Tweak) {
+        const tweak = new Tweak({ container: root, onChange: render });
+        tweak.addSelect(state, 'density', { label: 'Project-list density', options: ['Comfortable', 'Compact'] });
+        tweak.addSlider(state, 'side', { label: 'Project list width', min: 180, max: 270, unit: 'px' });
+        tweak.addSlider(state, 'inspectorWidth', { label: 'Inspector width', min: 230, max: 360, unit: 'px' });
+      }
+    })();
+  </script>
+</div>

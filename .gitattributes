@@ -1,0 +1,8 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.woff2 binary
+# Preserve the original line endings and whitespace of embedded upstream notices.
+third_party/pydantic-core-NOTICES.txt -text -whitespace
+third_party/rust-stdlib-NOTICES.txt -text -whitespace

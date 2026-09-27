@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Botainer dashboard</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/vendor/xterm/css/xterm.css">
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <div id="app" class="app">
+    <header class="app-bar">
+      <button id="toggle-projects" class="icon-button" aria-label="Toggle projects" aria-controls="sidebar" aria-expanded="true">☰</button>
+      <a class="brand" href="/">botainer<span>dashboard</span></a>
+      <span id="service-state" class="service-state" role="status">Connecting to local service…</span>
+      <button id="service-notice" class="service-notice" hidden></button>
+      <div class="app-actions">
+        <button id="open-switcher" type="button" aria-haspopup="dialog" aria-controls="switcher-dialog" title="Switch projects and sessions (Ctrl/⌘Shift+P)">Switch…</button>
+        <button id="next-attention" type="button" title="Open the next session with an observed terminal bell" hidden>Next attention</button>
+        <button id="refresh">Refresh</button>
+        <button id="focus-mode" aria-pressed="false">Focus terminal</button>
+        <button id="dashboard-settings" aria-label="Dashboard settings and machines" title="Dashboard settings and machines" aria-controls="inspector" aria-pressed="false">Settings</button>
+        <button id="lock-dashboard" class="quiet" title="Forget this browser’s dashboard access; requires pairing again">Sign out</button>
+      </div>
+    </header>
+    <div class="layout">
+      <aside id="sidebar" class="sidebar" aria-label="Projects and sessions">
+        <div class="sidebar-tools">
+          <div class="section-heading"><h1 id="project-list-title">Projects</h1><span id="project-count" class="count">0</span><button id="compact-projects" class="quiet" type="button" aria-pressed="false" title="Fit more projects by reducing spacing and hiding dates. Keep connection, agent, state and warning information.">Compact</button></div>
+          <label class="filter-label" for="workspace-select">Filter by connection</label>
+          <select id="workspace-select" class="workspace-select" aria-describedby="workspace-status"><option value="">All connections</option></select>
+          <div id="workspace-shortcuts" class="workspace-shortcuts" role="group" aria-label="Registered workspaces" hidden></div>
+          <p id="workspace-status" class="workspace-status" role="status"></p>
+          <p id="host-inventory-note" class="host-inventory-note" hidden></p>
+          <button id="copy-ssh" class="quiet ssh-recovery" type="button" hidden>Copy SSH command</button>
+          <label class="sr-only" for="project-search">Find projects and sessions</label>
+          <input id="project-search" type="search" placeholder="Find projects or sessions…" autocomplete="off">
+          <button id="show-all-projects" class="quiet show-all-projects" type="button" hidden>Show all projects</button>
+          <div class="filter-row"><label for="project-sort">Sort</label><select id="project-sort"><option value="recent">Recent launches</option><option value="name">Name</option><option value="active">Active first</option></select></div>
+          <label class="ended-filter" title="Show the latest five ended sessions and launch logs in expanded projects"><input id="show-ended" type="checkbox">Show recent history</label>
+          <div class="list-actions"><button id="collapse-projects" class="quiet" type="button" title="Hide every project's session list. Open terminals stay connected.">Collapse all</button><label title="Show only projects with an unacknowledged terminal bell. The number counts sessions with bells. A bell may signal attention; it does not confirm that an agent is waiting for input. Only connected dashboard terminals are monitored."><input id="show-bells" type="checkbox" aria-describedby="bell-coverage"><span id="bell-filter-label">With bell (0)</span></label></div>
+          <p id="bell-coverage" class="bell-coverage">Bell alerts: connected terminals only.</p>
+        </div>
+        <nav id="projects" class="projects" aria-label="Project list"></nav>
+        <div class="sidebar-bottom"><button id="add-project" disabled>Add project</button></div>
+      </aside>
+      <div id="sidebar-resizer" class="pane-resizer sidebar-resizer" role="separator" aria-label="Project sidebar width" aria-orientation="vertical" aria-controls="sidebar" aria-valuemin="200" aria-valuemax="440" aria-valuenow="248" aria-describedby="pane-resize-help" tabindex="0" hidden></div>
+      <button id="sidebar-backdrop" class="sidebar-backdrop" aria-label="Close project navigation" hidden></button>
+      <main class="workspace">
+        <div id="workspace-content" class="workspace-content">
+        <nav class="open-views" aria-label="Open work"><span class="open-views-label">Open</span><div id="session-tabs" class="session-tabs" role="tablist" aria-label="Open work views"></div><button id="open-session-list" class="quiet" type="button" aria-haspopup="dialog" aria-controls="switcher-dialog" title="List open sessions">Sessions</button></nav>
+        <header class="workspace-heading">
+          <div class="workspace-identity"><div class="project-title-row"><span id="project-context" class="eyebrow">All machines</span><span class="context-divider" aria-hidden="true">/</span><h2 id="project-title">Choose a project</h2><span id="project-execution" class="host-badge" hidden>Host · no container</span></div><button id="project-path" class="project-path quiet" title="Browse project files">Select a registered project to get started.</button></div>
+          <div class="toolbar-actions">
+            <button id="show-files" aria-pressed="false" title="Browse this project's folder on its machine">Browse files</button>
+            <button id="show-config" aria-pressed="false" disabled>Project config</button>
+            <button id="show-project-details" aria-pressed="false" hidden>Project details</button>
+            <div class="session-launch-controls" role="group" aria-label="Start a new session">
+              <label id="session-agent-label" class="session-agent" hidden>Agent for new session<select id="session-agent" aria-label="Agent for new session" aria-describedby="session-agent-note" title="Choose the agent for a new session. Project default uses saved configuration; this does not change existing sessions or saved settings."><option value="default">Project default</option><option value="claude">Claude</option><option value="codex">Codex</option></select></label>
+              <button id="new-session" class="primary" disabled>New session</button>
+              <p id="session-agent-note" class="session-agent-note" hidden>New sessions only · saved settings unchanged</p>
+            </div>
+          </div>
+        </header>
+        <div class="work-area">
+          <section class="terminal-area" aria-label="Terminal workspace">
+            <div id="terminal-toolbar" class="terminal-top" hidden><div class="terminal-identity"><span id="session-title">Terminal</span><span id="session-context" class="muted"></span></div><div class="terminal-controls"><button id="connect" disabled>Connect</button><button id="copy-terminal" class="quiet" title="Copy selected terminal text (⌘C on Mac). Option-drag selects when an app captures the mouse." disabled>Copy</button><button id="paste-terminal" class="quiet" title="Paste into the connected terminal (⌘V on Mac). Text may contain commands; review your clipboard before pasting." disabled>Paste</button><button id="open-search" class="quiet" disabled>Find</button><button id="show-scrollback" class="quiet" aria-controls="inspector" aria-pressed="false" title="Read a screen and scrollback snapshot without sending terminal input." disabled>Scrollback</button><button id="show-details" aria-label="Session details" aria-pressed="false">Session details</button><details id="terminal-menu" class="terminal-menu"><summary aria-label="Terminal actions">•••</summary><div class="terminal-menu-items"><label class="terminal-font-size" for="terminal-font-size">Text size<select id="terminal-font-size" title="Text size for all terminal views; remembered in this browser" aria-label="Terminal text size"></select></label><button id="detach" disabled>Disconnect view</button><button id="close-view" disabled>Close view</button><button id="stop-session" class="danger" aria-label="Stop session" disabled>Stop session</button></div></details></div></div>
+            <div id="terminal-bell" class="terminal-bell" hidden><span>🔔 Terminal bell received · may need attention</span><button id="mark-bell-seen" class="quiet" type="button">Mark seen</button></div>
+            <div id="terminal-execution" class="host-terminal-boundary" role="note" hidden><strong id="host-terminal-title">⚠ HOST AGENT · NO CONTAINER</strong><span class="host-access-summary">Can access this computer’s files and credentials with your account’s permissions.</span></div>
+            <div id="terminal-empty" class="empty-state"><div class="empty-icon" aria-hidden="true">›_</div><h3 id="empty-title">A place for your running work</h3><p id="empty-message">Projects and sessions appear here when the local service reports them. Select a session to open its terminal.</p><p id="host-project-note" class="host-inventory-note" hidden></p><button id="empty-action" class="primary" type="button" hidden></button><div id="project-session-chooser" class="project-session-chooser" role="group" aria-label="Current sessions — choose one to open" hidden></div></div>
+            <div id="terminal-guidance" class="terminal-guidance" role="status" hidden><div><strong id="terminal-guidance-title"></strong><p id="terminal-guidance-message"></p></div><button id="terminal-guidance-action" class="primary" type="button" hidden></button></div>
+            <div id="terminal-hosts" class="terminal-hosts" hidden></div>
+            <form id="terminal-search" class="terminal-search" hidden><label for="terminal-query">Find in terminal</label><input id="terminal-query" type="search" autocomplete="off"><button type="button" id="search-previous" aria-label="Previous match">↑</button><button type="submit" aria-label="Next match">↓</button><button type="button" id="close-search" aria-label="Close terminal search">×</button></form>
+            <div class="terminal-footer"><span id="connection-state" role="status">No terminal selected</span><span id="terminal-note">Terminal history stays in this page.</span><span id="project-status" class="muted"></span></div>
+          </section>
+        </div>
+        </div>
+          <aside id="inspector" class="inspector" aria-labelledby="inspector-title" hidden>
+            <div id="inspector-resizer" class="pane-resizer inspector-resizer" role="separator" aria-label="Details panel width" aria-orientation="vertical" aria-controls="inspector" aria-valuemin="320" aria-valuemax="800" aria-valuenow="520" aria-describedby="pane-resize-help" tabindex="0" hidden></div>
+            <div class="inspector-heading"><button id="back-to-work" class="quiet" hidden>← Back to work</button><div><h3 id="inspector-title" tabindex="-1">Details</h3><p id="inspector-context" class="muted"></p></div><button id="dock-inspector" class="quiet" type="button" aria-pressed="false" title="Keep this panel beside the terminal when there is enough room" hidden>Dock panel</button><button id="expand-files" class="quiet" aria-pressed="false" hidden>Full width</button><button id="close-inspector" class="icon-button" aria-label="Close panel">×</button></div>
+            <div id="inspector-content" class="inspector-content"></div>
+          </aside>
+      </main>
+    </div>
+    <div id="notice" class="notice" role="status" hidden></div>
+  </div>
+  <p id="pane-resize-help" class="sr-only">Drag to resize. Use Left and Right arrows for small changes, Shift with an arrow for larger changes, and Home or End for the minimum or maximum width. Double-click to reset the width.</p>
+  <dialog id="action-dialog"><form id="action-form"><h2 id="action-title"></h2><p id="action-description"></p><div id="action-fields"></div><div class="dialog-actions"><button type="button" id="cancel-action">Cancel</button><button type="submit" id="confirm-action" class="primary">Continue</button></div></form></dialog>
+  <dialog id="switcher-dialog" class="switcher-dialog" aria-labelledby="switcher-title" aria-describedby="switcher-hint">
+    <div class="switcher-heading"><h2 id="switcher-title">Switch projects and sessions</h2><button id="close-switcher" class="icon-button" type="button" aria-label="Close switcher">×</button></div>
+    <label class="sr-only" for="switcher-query">Find a project or session</label>
+    <input id="switcher-query" type="search" placeholder="Find projects, sessions or machines…" autocomplete="off" spellcheck="false" aria-controls="switcher-results">
+    <p id="switcher-hint" class="switcher-hint">Choose an item to open it. No new session is started.</p>
+    <div id="switcher-results" class="switcher-results" role="group" aria-label="Matching projects and sessions"></div>
+    <p id="switcher-empty" class="switcher-empty" role="status" hidden>No matching projects or sessions.</p>
+  </dialog>
+  <script src="/vendor/xterm/lib/xterm.js"></script>
+  <script src="/vendor/addon-fit/lib/addon-fit.js"></script>
+  <script src="/vendor/addon-search/lib/addon-search.js"></script>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

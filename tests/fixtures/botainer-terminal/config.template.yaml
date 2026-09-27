@@ -1,0 +1,18 @@
+# Replace only the image ID and canonical fixture directory after approval.
+version: config-v1
+agent: dashboard-test
+agent_permissions: prompt
+runtime: docker
+image: REPLACE_WITH_APPROVED_CACHED_IMAGE_ID
+network:
+  mode: none
+plugins_enabled:
+  - agent-dashboard-test
+inject_credentials: []
+job_profiles: {}
+mounts:
+  extra:
+    - source: REPLACE_WITH_CANONICAL_FIXTURE_DIRECTORY
+      target: /mnt/dashboard-fixture
+      mode: ro
+      reason: Fixed deterministic terminal protocol; no executable user input
