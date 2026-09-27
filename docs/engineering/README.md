@@ -58,6 +58,51 @@ For dependency or bundled-asset changes, also use
 `python3 requirements/verify.py` and the
 [update process](dependency-updates.md).
 
+## GitHub CI
+
+The source repository's `.github/workflows/ci.yml` runs on pushes, pull requests
+and manual requests. It uses a fresh GitHub-hosted `macos-15` arm64 runner,
+Python 3.13.15 and Node 22.23.3. This matches the platform targeted by the
+existing dependency lock; Linux runtime CI needs a separate wheel selection.
+
+The workflow creates a disposable Python environment and installs the 14 exact
+binary wheels from the hashed requirements. It checks their installed versions
+and service imports, then runs `python -B tools/check.py --pty`. Missing or
+mismatched runtime dependencies fail the job instead of silently reducing test
+coverage. No application build, npm install or Botainer installation is needed.
+
+These checks cover Python unit tests, browser logic, the simulation, generated
+files, dependency integrity, documentation, and deterministic local terminal and
+HTTP/WebSocket behavior. Five optional YAML tests and six opt-in tmux tests are
+skipped in this environment. Real Botainer/agent sessions, Docker, SSH/clusters,
+browser automation and installation acceptance are separate checks. CI does not
+require Botainer alpha5; testing the official Botainer release remains necessary
+before claiming real-session acceptance with that version.
+
+To reproduce the test gate locally with existing application dependencies and
+Node, run `python -B tools/check.py --pty`. The workflow's **Verify runtime and
+run checks** step also shows the dependency preflight. The local rehearsal used
+Python 3.13.15 and Node 22.18.0; it exercises the same commands, not GitHub runner
+provisioning or the hosted Node patch. The first hosted run must still be checked.
+Do not install dependencies into a working dashboard environment just to run CI.
+
+On GitHub, enable Actions under **Settings → Actions → General** and allow the
+three GitHub-owned actions named in the workflow. Push the workflow commit, then
+open **Actions → CI** to inspect the result. Once it is on the default branch,
+**Run workflow** also starts a manual run. If the workflow was previously disabled,
+enable it there first. Fork pull requests may need maintainer approval to run;
+keep that approval requirement. External patches remain paused under the
+[contribution policy](../../CONTRIBUTING.md).
+
+The job has read-only repository permissions, does not retain checkout
+credentials, and uses no repository secrets, dependency caches or self-hosted
+runner. It does not publish anything or access a user's machines. The test step
+is offline apart from loopback sockets; provisioning downloads the pinned actions,
+interpreters and wheels. Action revisions are pinned to full commit hashes.
+Review action/interpreter pins and the wheel lock during dependency updates.
+See [GitHub's runner reference](https://docs.github.com/en/actions/reference/runners/github-hosted-runners)
+and [Actions settings](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository).
+
 ## Changes and evidence
 
 Keep browser requests scoped to declared operations and exact target identities.
